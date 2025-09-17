@@ -8,3 +8,7 @@ export function getOtp(data: GetOtpRequest) {
 export function setOtp(data: GetOtpRequest) {
   return app.post("/user/get-otp", data).then(({ data }) => data.data)
 }
+
+export function setOtp(data: GetOtpRequest) {
+  return app.post("/user/get-otp", data).then(({ data }) => data.data)
+}
