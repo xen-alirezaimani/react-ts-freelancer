@@ -123,7 +123,7 @@ const PhoneInput: React.FC = () => {
         ارسال
       </button>
     </form>
-  );
+  )
 };
 
-export default PhoneInput;
+export default PhoneInput
