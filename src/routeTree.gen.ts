@@ -8,246 +8,247 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as LangRouteImport } from "./routes/$lang";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as LangIndexRouteImport } from "./routes/$lang/index";
-import { Route as LangAuthRouteImport } from "./routes/$lang/auth";
-import { Route as LangNotFoundRouteImport } from "./routes/$lang/$notFound";
-import { Route as LangOwnerRouteRouteImport } from "./routes/$lang/owner/route";
-import { Route as LangOwnerIndexRouteImport } from "./routes/$lang/owner/index";
-import { Route as LangOwnerDashboardRouteImport } from "./routes/$lang/owner/dashboard";
-import { Route as LangOwnerCompleteProfileRouteImport } from "./routes/$lang/owner/complete-profile";
-import { Route as LangOwnerProjectsIndexRouteImport } from "./routes/$lang/owner/projects/index";
-import { Route as LangOwnerProjectsIdRouteImport } from "./routes/$lang/owner/projects/$id";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as LangRouteImport } from './routes/$lang'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangIndexRouteImport } from './routes/$lang/index'
+import { Route as LangAuthRouteImport } from './routes/$lang/auth'
+import { Route as LangNotFoundRouteImport } from './routes/$lang/$notFound'
+import { Route as LangOwnerRouteRouteImport } from './routes/$lang/owner/route'
+import { Route as LangOwnerIndexRouteImport } from './routes/$lang/owner/index'
+import { Route as LangOwnerDashboardRouteImport } from './routes/$lang/owner/dashboard'
+import { Route as LangOwnerCompleteProfileRouteImport } from './routes/$lang/owner/complete-profile'
+import { Route as LangOwnerProjectsIndexRouteImport } from './routes/$lang/owner/projects/index'
+import { Route as LangOwnerProjectsIdRouteImport } from './routes/$lang/owner/projects/$id'
 
 const LangRoute = LangRouteImport.update({
-  id: "/$lang",
-  path: "/$lang",
+  id: '/$lang',
+  path: '/$lang',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LangIndexRoute = LangIndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => LangRoute,
-} as any);
+} as any)
 const LangAuthRoute = LangAuthRouteImport.update({
-  id: "/auth",
-  path: "/auth",
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => LangRoute,
-} as any);
+} as any)
 const LangNotFoundRoute = LangNotFoundRouteImport.update({
-  id: "/$notFound",
-  path: "/$notFound",
+  id: '/$notFound',
+  path: '/$notFound',
   getParentRoute: () => LangRoute,
-} as any);
+} as any)
 const LangOwnerRouteRoute = LangOwnerRouteRouteImport.update({
-  id: "/owner",
-  path: "/owner",
+  id: '/owner',
+  path: '/owner',
   getParentRoute: () => LangRoute,
-} as any);
+} as any)
 const LangOwnerIndexRoute = LangOwnerIndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => LangOwnerRouteRoute,
-} as any);
+} as any)
 const LangOwnerDashboardRoute = LangOwnerDashboardRouteImport.update({
-  id: "/dashboard",
-  path: "/dashboard",
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => LangOwnerRouteRoute,
-} as any);
-const LangOwnerCompleteProfileRoute = LangOwnerCompleteProfileRouteImport.update({
-  id: "/complete-profile",
-  path: "/complete-profile",
-  getParentRoute: () => LangOwnerRouteRoute,
-} as any);
+} as any)
+const LangOwnerCompleteProfileRoute =
+  LangOwnerCompleteProfileRouteImport.update({
+    id: '/complete-profile',
+    path: '/complete-profile',
+    getParentRoute: () => LangOwnerRouteRoute,
+  } as any)
 const LangOwnerProjectsIndexRoute = LangOwnerProjectsIndexRouteImport.update({
-  id: "/projects/",
-  path: "/projects/",
+  id: '/projects/',
+  path: '/projects/',
   getParentRoute: () => LangOwnerRouteRoute,
-} as any);
+} as any)
 const LangOwnerProjectsIdRoute = LangOwnerProjectsIdRouteImport.update({
-  id: "/projects/$id",
-  path: "/projects/$id",
+  id: '/projects/$id',
+  path: '/projects/$id',
   getParentRoute: () => LangOwnerRouteRoute,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/$lang": typeof LangRouteWithChildren;
-  "/$lang/owner": typeof LangOwnerRouteRouteWithChildren;
-  "/$lang/$notFound": typeof LangNotFoundRoute;
-  "/$lang/auth": typeof LangAuthRoute;
-  "/$lang/": typeof LangIndexRoute;
-  "/$lang/owner/complete-profile": typeof LangOwnerCompleteProfileRoute;
-  "/$lang/owner/dashboard": typeof LangOwnerDashboardRoute;
-  "/$lang/owner/": typeof LangOwnerIndexRoute;
-  "/$lang/owner/projects/$id": typeof LangOwnerProjectsIdRoute;
-  "/$lang/owner/projects": typeof LangOwnerProjectsIndexRoute;
+  '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/owner': typeof LangOwnerRouteRouteWithChildren
+  '/$lang/$notFound': typeof LangNotFoundRoute
+  '/$lang/auth': typeof LangAuthRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/owner/complete-profile': typeof LangOwnerCompleteProfileRoute
+  '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
+  '/$lang/owner/': typeof LangOwnerIndexRoute
+  '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
+  '/$lang/owner/projects': typeof LangOwnerProjectsIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/$lang/$notFound": typeof LangNotFoundRoute;
-  "/$lang/auth": typeof LangAuthRoute;
-  "/$lang": typeof LangIndexRoute;
-  "/$lang/owner/complete-profile": typeof LangOwnerCompleteProfileRoute;
-  "/$lang/owner/dashboard": typeof LangOwnerDashboardRoute;
-  "/$lang/owner": typeof LangOwnerIndexRoute;
-  "/$lang/owner/projects/$id": typeof LangOwnerProjectsIdRoute;
-  "/$lang/owner/projects": typeof LangOwnerProjectsIndexRoute;
+  '/': typeof IndexRoute
+  '/$lang/$notFound': typeof LangNotFoundRoute
+  '/$lang/auth': typeof LangAuthRoute
+  '/$lang': typeof LangIndexRoute
+  '/$lang/owner/complete-profile': typeof LangOwnerCompleteProfileRoute
+  '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
+  '/$lang/owner': typeof LangOwnerIndexRoute
+  '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
+  '/$lang/owner/projects': typeof LangOwnerProjectsIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/$lang": typeof LangRouteWithChildren;
-  "/$lang/owner": typeof LangOwnerRouteRouteWithChildren;
-  "/$lang/$notFound": typeof LangNotFoundRoute;
-  "/$lang/auth": typeof LangAuthRoute;
-  "/$lang/": typeof LangIndexRoute;
-  "/$lang/owner/complete-profile": typeof LangOwnerCompleteProfileRoute;
-  "/$lang/owner/dashboard": typeof LangOwnerDashboardRoute;
-  "/$lang/owner/": typeof LangOwnerIndexRoute;
-  "/$lang/owner/projects/$id": typeof LangOwnerProjectsIdRoute;
-  "/$lang/owner/projects/": typeof LangOwnerProjectsIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/owner': typeof LangOwnerRouteRouteWithChildren
+  '/$lang/$notFound': typeof LangNotFoundRoute
+  '/$lang/auth': typeof LangAuthRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/owner/complete-profile': typeof LangOwnerCompleteProfileRoute
+  '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
+  '/$lang/owner/': typeof LangOwnerIndexRoute
+  '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
+  '/$lang/owner/projects/': typeof LangOwnerProjectsIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | "/$lang"
-    | "/$lang/owner"
-    | "/$lang/$notFound"
-    | "/$lang/auth"
-    | "/$lang/"
-    | "/$lang/owner/complete-profile"
-    | "/$lang/owner/dashboard"
-    | "/$lang/owner/"
-    | "/$lang/owner/projects/$id"
-    | "/$lang/owner/projects";
-  fileRoutesByTo: FileRoutesByTo;
+    | '/'
+    | '/$lang'
+    | '/$lang/owner'
+    | '/$lang/$notFound'
+    | '/$lang/auth'
+    | '/$lang/'
+    | '/$lang/owner/complete-profile'
+    | '/$lang/owner/dashboard'
+    | '/$lang/owner/'
+    | '/$lang/owner/projects/$id'
+    | '/$lang/owner/projects'
+  fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/$lang/$notFound"
-    | "/$lang/auth"
-    | "/$lang"
-    | "/$lang/owner/complete-profile"
-    | "/$lang/owner/dashboard"
-    | "/$lang/owner"
-    | "/$lang/owner/projects/$id"
-    | "/$lang/owner/projects";
+    | '/'
+    | '/$lang/$notFound'
+    | '/$lang/auth'
+    | '/$lang'
+    | '/$lang/owner/complete-profile'
+    | '/$lang/owner/dashboard'
+    | '/$lang/owner'
+    | '/$lang/owner/projects/$id'
+    | '/$lang/owner/projects'
   id:
-    | "__root__"
-    | "/"
-    | "/$lang"
-    | "/$lang/owner"
-    | "/$lang/$notFound"
-    | "/$lang/auth"
-    | "/$lang/"
-    | "/$lang/owner/complete-profile"
-    | "/$lang/owner/dashboard"
-    | "/$lang/owner/"
-    | "/$lang/owner/projects/$id"
-    | "/$lang/owner/projects/";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/$lang'
+    | '/$lang/owner'
+    | '/$lang/$notFound'
+    | '/$lang/auth'
+    | '/$lang/'
+    | '/$lang/owner/complete-profile'
+    | '/$lang/owner/dashboard'
+    | '/$lang/owner/'
+    | '/$lang/owner/projects/$id'
+    | '/$lang/owner/projects/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  LangRoute: typeof LangRouteWithChildren;
+  IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRouteWithChildren
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/$lang": {
-      id: "/$lang";
-      path: "/$lang";
-      fullPath: "/$lang";
-      preLoaderRoute: typeof LangRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/$lang/": {
-      id: "/$lang/";
-      path: "/";
-      fullPath: "/$lang/";
-      preLoaderRoute: typeof LangIndexRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    "/$lang/auth": {
-      id: "/$lang/auth";
-      path: "/auth";
-      fullPath: "/$lang/auth";
-      preLoaderRoute: typeof LangAuthRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    "/$lang/$notFound": {
-      id: "/$lang/$notFound";
-      path: "/$notFound";
-      fullPath: "/$lang/$notFound";
-      preLoaderRoute: typeof LangNotFoundRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    "/$lang/owner": {
-      id: "/$lang/owner";
-      path: "/owner";
-      fullPath: "/$lang/owner";
-      preLoaderRoute: typeof LangOwnerRouteRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    "/$lang/owner/": {
-      id: "/$lang/owner/";
-      path: "/";
-      fullPath: "/$lang/owner/";
-      preLoaderRoute: typeof LangOwnerIndexRouteImport;
-      parentRoute: typeof LangOwnerRouteRoute;
-    };
-    "/$lang/owner/dashboard": {
-      id: "/$lang/owner/dashboard";
-      path: "/dashboard";
-      fullPath: "/$lang/owner/dashboard";
-      preLoaderRoute: typeof LangOwnerDashboardRouteImport;
-      parentRoute: typeof LangOwnerRouteRoute;
-    };
-    "/$lang/owner/complete-profile": {
-      id: "/$lang/owner/complete-profile";
-      path: "/complete-profile";
-      fullPath: "/$lang/owner/complete-profile";
-      preLoaderRoute: typeof LangOwnerCompleteProfileRouteImport;
-      parentRoute: typeof LangOwnerRouteRoute;
-    };
-    "/$lang/owner/projects/": {
-      id: "/$lang/owner/projects/";
-      path: "/projects";
-      fullPath: "/$lang/owner/projects";
-      preLoaderRoute: typeof LangOwnerProjectsIndexRouteImport;
-      parentRoute: typeof LangOwnerRouteRoute;
-    };
-    "/$lang/owner/projects/$id": {
-      id: "/$lang/owner/projects/$id";
-      path: "/projects/$id";
-      fullPath: "/$lang/owner/projects/$id";
-      preLoaderRoute: typeof LangOwnerProjectsIdRouteImport;
-      parentRoute: typeof LangOwnerRouteRoute;
-    };
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/auth': {
+      id: '/$lang/auth'
+      path: '/auth'
+      fullPath: '/$lang/auth'
+      preLoaderRoute: typeof LangAuthRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/$notFound': {
+      id: '/$lang/$notFound'
+      path: '/$notFound'
+      fullPath: '/$lang/$notFound'
+      preLoaderRoute: typeof LangNotFoundRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/owner': {
+      id: '/$lang/owner'
+      path: '/owner'
+      fullPath: '/$lang/owner'
+      preLoaderRoute: typeof LangOwnerRouteRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/owner/': {
+      id: '/$lang/owner/'
+      path: '/'
+      fullPath: '/$lang/owner/'
+      preLoaderRoute: typeof LangOwnerIndexRouteImport
+      parentRoute: typeof LangOwnerRouteRoute
+    }
+    '/$lang/owner/dashboard': {
+      id: '/$lang/owner/dashboard'
+      path: '/dashboard'
+      fullPath: '/$lang/owner/dashboard'
+      preLoaderRoute: typeof LangOwnerDashboardRouteImport
+      parentRoute: typeof LangOwnerRouteRoute
+    }
+    '/$lang/owner/complete-profile': {
+      id: '/$lang/owner/complete-profile'
+      path: '/complete-profile'
+      fullPath: '/$lang/owner/complete-profile'
+      preLoaderRoute: typeof LangOwnerCompleteProfileRouteImport
+      parentRoute: typeof LangOwnerRouteRoute
+    }
+    '/$lang/owner/projects/': {
+      id: '/$lang/owner/projects/'
+      path: '/projects'
+      fullPath: '/$lang/owner/projects'
+      preLoaderRoute: typeof LangOwnerProjectsIndexRouteImport
+      parentRoute: typeof LangOwnerRouteRoute
+    }
+    '/$lang/owner/projects/$id': {
+      id: '/$lang/owner/projects/$id'
+      path: '/projects/$id'
+      fullPath: '/$lang/owner/projects/$id'
+      preLoaderRoute: typeof LangOwnerProjectsIdRouteImport
+      parentRoute: typeof LangOwnerRouteRoute
+    }
   }
 }
 
 interface LangOwnerRouteRouteChildren {
-  LangOwnerCompleteProfileRoute: typeof LangOwnerCompleteProfileRoute;
-  LangOwnerDashboardRoute: typeof LangOwnerDashboardRoute;
-  LangOwnerIndexRoute: typeof LangOwnerIndexRoute;
-  LangOwnerProjectsIdRoute: typeof LangOwnerProjectsIdRoute;
-  LangOwnerProjectsIndexRoute: typeof LangOwnerProjectsIndexRoute;
+  LangOwnerCompleteProfileRoute: typeof LangOwnerCompleteProfileRoute
+  LangOwnerDashboardRoute: typeof LangOwnerDashboardRoute
+  LangOwnerIndexRoute: typeof LangOwnerIndexRoute
+  LangOwnerProjectsIdRoute: typeof LangOwnerProjectsIdRoute
+  LangOwnerProjectsIndexRoute: typeof LangOwnerProjectsIndexRoute
 }
 
 const LangOwnerRouteRouteChildren: LangOwnerRouteRouteChildren = {
@@ -256,15 +257,17 @@ const LangOwnerRouteRouteChildren: LangOwnerRouteRouteChildren = {
   LangOwnerIndexRoute: LangOwnerIndexRoute,
   LangOwnerProjectsIdRoute: LangOwnerProjectsIdRoute,
   LangOwnerProjectsIndexRoute: LangOwnerProjectsIndexRoute,
-};
+}
 
-const LangOwnerRouteRouteWithChildren = LangOwnerRouteRoute._addFileChildren(LangOwnerRouteRouteChildren);
+const LangOwnerRouteRouteWithChildren = LangOwnerRouteRoute._addFileChildren(
+  LangOwnerRouteRouteChildren,
+)
 
 interface LangRouteChildren {
-  LangOwnerRouteRoute: typeof LangOwnerRouteRouteWithChildren;
-  LangNotFoundRoute: typeof LangNotFoundRoute;
-  LangAuthRoute: typeof LangAuthRoute;
-  LangIndexRoute: typeof LangIndexRoute;
+  LangOwnerRouteRoute: typeof LangOwnerRouteRouteWithChildren
+  LangNotFoundRoute: typeof LangNotFoundRoute
+  LangAuthRoute: typeof LangAuthRoute
+  LangIndexRoute: typeof LangIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
@@ -272,12 +275,14 @@ const LangRouteChildren: LangRouteChildren = {
   LangNotFoundRoute: LangNotFoundRoute,
   LangAuthRoute: LangAuthRoute,
   LangIndexRoute: LangIndexRoute,
-};
+}
 
-const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren);
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangRoute: LangRouteWithChildren,
-};
-export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
