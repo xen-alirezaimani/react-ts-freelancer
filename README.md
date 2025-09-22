@@ -7,7 +7,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 Before committing your code, run the following command in the terminal to format it:
 
 ```bash
-pnpm run verify
+pnpm run format
 pnpm prettier --write ./src
 ```
 
