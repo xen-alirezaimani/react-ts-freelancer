@@ -10,3 +10,12 @@ Before committing your code, run the following command in the terminal to format
 pnpm run verify
 pnpm prettier --write ./src
 ```
+
+## Static Check
+
+Run Act-Cli with github-Cli
+
+```bash
+gh extension install https://github.com/nektos/gh-act
+gh act pull_request
+```
