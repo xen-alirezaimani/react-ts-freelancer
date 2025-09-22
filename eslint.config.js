@@ -20,7 +20,7 @@ export default tseslint.config([
       globals: globals.browser,
     },
     rules: {
-      "@typescript-eslint/no-unused-vars": "warn", // فقط warning بده
+      "@typescript-eslint/no-unused-vars": "off",
     },
   },
 ]);
