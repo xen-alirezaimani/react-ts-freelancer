@@ -3,7 +3,7 @@ export interface GetOtpRequest {
 }
 
 export interface GetOtpResponse {
-  status: "success" | "error";
+  status: "error" | "success";
   message: string;
   otpId?: string;
 }

@@ -1,4 +1,4 @@
-import { Outlet, useParams, useNavigate, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useNavigate, useParams } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -13,7 +13,7 @@ function LangLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (lang && !["fa", "en"].includes(lang)) {
+    if (lang && !["en", "fa"].includes(lang)) {
       navigate({ to: "/$lang", params: { lang: "fa" }, replace: true });
     } else {
       const activeLang = lang ?? "fa";

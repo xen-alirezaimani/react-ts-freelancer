@@ -1,13 +1,16 @@
-import * as v from "valibot";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import type { Country } from "../../types/auth";
-import { staticData } from "./../../constants/index";
-import { Controller, useForm } from "react-hook-form";
+import type * as v from "valibot";
+
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import createPhoneSchema from "../../schemas/createPhoneSchema";
-import SelectCountry from "../../components/authentication/SelectCountry";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
+import type { Country } from "../../types/auth";
+
 import PhoneNumberInput from "../../components/authentication/PhoneNumberInput";
+import SelectCountry from "../../components/authentication/SelectCountry";
+import { staticData } from "../../constants/index";
+import createPhoneSchema from "../../schemas/createPhoneSchema";
 
 const SendOTP: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country>(staticData.countries[0]);
@@ -42,13 +45,13 @@ const SendOTP: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-full flex flex-col justify-center items-center gap-5">
+      <div className="flex w-full flex-col items-center justify-center gap-5">
         <SelectCountry
           value={selectedCountry.code}
+          countries={staticData.countries}
           onChange={e => {
             handleCountryChange(e);
           }}
-          countries={staticData.countries}
         />
 
         <Controller
@@ -56,18 +59,18 @@ const SendOTP: React.FC = () => {
           control={control}
           render={({ field }) => (
             <PhoneNumberInput
-              placeholder={t("auth.login.phoneNumberPlaceholder")}
               value={field.value}
               onChange={e => {
                 field.onChange(e);
               }}
+              placeholder={t("auth.login.phoneNumberPlaceholder")}
             />
           )}
         />
 
         {errors.phoneNumber && <span style={{ color: "red", fontSize: "12px" }}>{errors.phoneNumber.message}</span>}
 
-        <button type="submit" className="p-5">
+        <button className="p-5" type="submit">
           {t("auth.login.SubmitButton")}
         </button>
       </div>

@@ -1,5 +1,6 @@
-import axios from "axios";
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+
+import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -10,7 +11,7 @@ const app = axios.create({
 });
 
 let isRefreshing: boolean = false;
-let refreshSubscribers: Array<() => void> = [];
+let refreshSubscribers: (() => void)[] = [];
 
 function onRefreshed() {
   refreshSubscribers.forEach(cb => cb());
@@ -29,7 +30,7 @@ app.interceptors.response.use(
       return Promise.reject(err);
     }
 
-    if (err.response.status == 401 && !orginalConfig._retry) {
+    if (err.response.status === 401 && !orginalConfig._retry) {
       orginalConfig._retry = true;
 
       if (isRefreshing) {

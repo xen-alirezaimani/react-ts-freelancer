@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+
 import SingleProjectPage from "../../../../pages/SingleProjectPage";
 
 export const Route = createFileRoute("/$lang/owner/projects/$id")({
