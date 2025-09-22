@@ -13,6 +13,12 @@ pnpm prettier --write ./src
 
 ## Static Check
 
+Run TypeScript Type check
+
+```bash
+pnpm run type-check
+```
+
 Run Act-Cli with github-Cli
 
 ```bash
