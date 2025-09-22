@@ -11,6 +11,13 @@ pnpm run format
 pnpm prettier --write ./src
 ```
 
+## Using fullstacksjs/eslint-config
+
+```bash
+pnpm eslint .
+pnpm eslint . --fix
+```
+
 ## Static Check
 
 Run TypeScript Type check

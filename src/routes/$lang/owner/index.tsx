@@ -7,5 +7,5 @@ export const Route = createFileRoute("/$lang/owner/")({
 function OwnerRedirect() {
   const { lang } = useParams({ from: "/$lang/owner/" });
 
-  return <Navigate to="/$lang/owner/dashboard" params={{ lang }} />;
+  return <Navigate params={{ lang }} to="/$lang/owner/dashboard" />;
 }

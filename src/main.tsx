@@ -1,8 +1,9 @@
 import "./i18n";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
-import { routeTree } from "./routeTree.gen";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
+
+import { routeTree } from "./routeTree.gen";
 
 const router = createRouter({ routeTree });
 declare module "@tanstack/react-router" {

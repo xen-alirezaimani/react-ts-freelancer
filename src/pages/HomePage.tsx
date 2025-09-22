@@ -20,7 +20,9 @@ export default function HomePage() {
   return (
     <div className="container">
       <h1>{t("hello")}</h1>
-      <button onClick={handleSwitchLang}>تغییر زبان به {switchLang}</button>
+      <button type="button" onClick={handleSwitchLang}>
+        تغییر زبان به {switchLang}
+      </button>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import Header from "../../../components/Header";
+
 import Footer from "../../../components/Footer";
+import Header from "../../../components/Header";
 
 export const Route = createFileRoute("/$lang/owner")({
   component: RouteComponent,
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/$lang/owner")({
 
 function RouteComponent() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <div className="container flex-1">
         <Outlet />
