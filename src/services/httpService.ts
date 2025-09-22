@@ -33,7 +33,7 @@ app.interceptors.response.use(
       orginalConfig._retry = true;
 
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
           addSubscribers(() => {
             resolve(app(orginalConfig));
           });
