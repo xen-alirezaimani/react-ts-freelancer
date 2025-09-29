@@ -9,7 +9,7 @@ function RootComponent() {
   return (
     <div className="flex min-h-screen flex-col">
       <Toaster />
-      <main className="flex-1">
+      <main className="h-screen flex-1 overflow-hidden">
         <Outlet />
       </main>
     </div>

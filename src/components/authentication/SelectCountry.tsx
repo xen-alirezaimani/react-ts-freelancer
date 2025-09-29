@@ -14,9 +14,13 @@ const SelectCountry = ({ value, onChange, countries }: CountrySelectProps) => {
   const { t } = useTranslation();
 
   return (
-    <select className="w-full" value={value} onChange={onChange}>
+    <select
+      className="w-full appearance-none rounded-lg border-none bg-white px-4 py-2 text-gray-700 shadow-sm outline-none"
+      value={value}
+      onChange={onChange}
+    >
       {countries.map(country => (
-        <option key={country.code} value={country.code}>
+        <option className="bg-white text-gray-700 hover:bg-blue-100 active:bg-blue-200" key={country.code} value={country.code}>
           {getFlagEmoji(country.code)} {t(`countries.countryNames.${country.code}`)} ({country.dialCode})
         </option>
       ))}

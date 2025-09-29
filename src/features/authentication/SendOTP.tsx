@@ -44,37 +44,39 @@ const SendOTP: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex w-full flex-col items-center justify-center gap-5">
-        <SelectCountry
-          value={selectedCountry.code}
-          countries={staticData.countries}
-          onChange={e => {
-            handleCountryChange(e);
-          }}
-        />
+    <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex w-full flex-col items-center justify-center gap-5">
+          <SelectCountry
+            value={selectedCountry.code}
+            countries={staticData.countries}
+            onChange={e => {
+              handleCountryChange(e);
+            }}
+          />
 
-        <Controller
-          name="phoneNumber"
-          control={control}
-          render={({ field }) => (
-            <PhoneNumberInput
-              value={field.value}
-              onChange={e => {
-                field.onChange(e);
-              }}
-              placeholder={t("auth.login.phoneNumberPlaceholder")}
-            />
-          )}
-        />
+          <Controller
+            name="phoneNumber"
+            control={control}
+            render={({ field }) => (
+              <PhoneNumberInput
+                value={field.value}
+                onChange={e => {
+                  field.onChange(e);
+                }}
+                placeholder={t("auth.login.phoneNumberPlaceholder")}
+              />
+            )}
+          />
 
-        {errors.phoneNumber && <span style={{ color: "red", fontSize: "12px" }}>{errors.phoneNumber.message}</span>}
+          {errors.phoneNumber && <span className="text-red-600">{errors.phoneNumber.message}</span>}
 
-        <button className="p-5" type="submit">
-          {t("auth.login.SubmitButton")}
-        </button>
-      </div>
-    </form>
+          <button className="p-5" type="submit">
+            {t("auth.login.SubmitButton")}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
