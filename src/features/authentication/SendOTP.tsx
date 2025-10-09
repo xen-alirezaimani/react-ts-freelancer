@@ -1,7 +1,7 @@
 import type * as v from "valibot";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -43,38 +43,44 @@ const SendOTP: React.FC = () => {
     console.log("فرم ارسال شد:", fullPhoneNumber);
   };
 
+  const loginButtonRef = useRef<HTMLButtonElement>(null);
+  const handleFocus = () => {
+    setTimeout(() => {
+      loginButtonRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    }, 100);
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex w-full flex-col items-center justify-center gap-5">
-          <SelectCountry
-            value={selectedCountry.code}
-            countries={staticData.countries}
-            onChange={e => {
-              handleCountryChange(e);
-            }}
-          />
+    <div className="size-full border border-gray-500">
+      <form className="flex size-full flex-col justify-between gap-5" onSubmit={handleSubmit(onSubmit)}>
+        <SelectCountry
+          value={selectedCountry.code}
+          countries={staticData.countries}
+          onChange={e => {
+            handleCountryChange(e);
+          }}
+        />
 
-          <Controller
-            name="phoneNumber"
-            control={control}
-            render={({ field }) => (
-              <PhoneNumberInput
-                value={field.value}
-                onChange={e => {
-                  field.onChange(e);
-                }}
-                placeholder={t("auth.login.phoneNumberPlaceholder")}
-              />
-            )}
-          />
+        <Controller
+          name="phoneNumber"
+          control={control}
+          render={({ field }) => (
+            <PhoneNumberInput
+              value={field.value}
+              onChange={e => {
+                field.onChange(e);
+              }}
+              onFocus={handleFocus}
+              placeholder={t("auth.login.phoneNumberPlaceholder")}
+            />
+          )}
+        />
 
-          {errors.phoneNumber && <span className="text-red-600">{errors.phoneNumber.message}</span>}
+        <div className="h-10">{errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber.message}</p>}</div>
 
-          <button className="p-5" type="submit">
-            {t("auth.login.SubmitButton")}
-          </button>
-        </div>
+        <button className="p-5" ref={loginButtonRef} type="submit">
+          {t("auth.login.SubmitButton")}
+        </button>
       </form>
     </div>
   );
