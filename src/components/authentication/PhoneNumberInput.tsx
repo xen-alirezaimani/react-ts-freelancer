@@ -8,7 +8,7 @@ interface PhoneNumberInputProps {
 const PhoneNumberInput = ({ placeholder, value, onChange, onFocus }: PhoneNumberInputProps) => {
   return (
     <input
-      className="h-10 w-full rounded-sm border-2 border-black px-2 py-1 outline-none"
+      className="h-10 w-full rounded-l-none rounded-r-2xl border-2 border-input px-3 py-1 text-left outline-none rtl:placeholder:text-right"
       type="number"
       value={value}
       onChange={onChange}
