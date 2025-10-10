@@ -7,7 +7,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col bg-background">
       <Toaster />
       <main className="flex-1">
         <Outlet />
