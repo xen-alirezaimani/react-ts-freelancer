@@ -51,7 +51,7 @@ const SendOTP: React.FC = () => {
   };
 
   return (
-    <div className="flex size-full flex-col gap-y-5 rounded-2xl border border-border p-5">
+    <div className="flex size-full flex-col gap-y-5">
       <h2 className="text-2xl">{t("auth.login.login")}</h2>
       <form className="flex size-full flex-col justify-between gap-y-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-1 flex-col justify-around">

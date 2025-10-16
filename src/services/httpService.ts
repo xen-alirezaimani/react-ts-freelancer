@@ -47,6 +47,7 @@ app.interceptors.response.use(
     try {
       await axios.get(`${BASE_URL}/user/refresh-token`, { withCredentials: true });
       onRefreshed();
+      // eslint-disable-next-line require-atomic-updates
       isRefreshing = false;
       return app(orginalConfig);
     } catch (refreshErr) {
