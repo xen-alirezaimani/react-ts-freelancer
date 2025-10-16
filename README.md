@@ -14,8 +14,8 @@ npm run format-fix
 ## Using fullstacksjs/eslint-config
 
 ```bash
-npm eslint .
-npm eslint . --fix
+npm run lint
+npm run lint-fix
 ```
 
 ## Static Check
