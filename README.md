@@ -8,14 +8,14 @@ Before committing your code, run the following command in the terminal to format
 
 ```bash
 npm run format
-npm run format-fix
+npm prettier --write ./src
 ```
 
 ## Using fullstacksjs/eslint-config
 
 ```bash
-npm run lint
-npm run lint-fix
+npm eslint .
+npm eslint . --fix
 ```
 
 ## Static Check
