@@ -8,8 +8,10 @@
     "type-check": "tsc -b",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "preview": "vite preview",
     "format": "prettier --check ./src",
+    "format-fix": "prettier --write ./src",
     "prepare": "husky"
   },
   "dependencies": {

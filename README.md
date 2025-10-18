@@ -7,15 +7,15 @@ This template provides a minimal setup to get React working in Vite with HMR and
 Before committing your code, run the following command in the terminal to format it:
 
 ```bash
-pnpm run format
-pnpm prettier --write ./src
+npm run format
+npm run format-fix
 ```
 
 ## Using fullstacksjs/eslint-config
 
 ```bash
-pnpm eslint .
-pnpm eslint . --fix
+npm run lint
+npm run lint-fix
 ```
 
 ## Static Check
@@ -23,7 +23,7 @@ pnpm eslint . --fix
 Run TypeScript Type check
 
 ```bash
-pnpm run type-check
+npm run type-check
 ```
 
 Run Act-Cli with github-Cli
