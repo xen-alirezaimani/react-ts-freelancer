@@ -64,7 +64,7 @@ const SendOTP: React.FC = () => {
           />
 
           <div className="flex rtl:flex-row-reverse">
-            <div className="flex items-center justify-center rounded-l-2xl border-2 border-input px-2 py-1">
+            <div className="flex w-15 items-center justify-center rounded-l-2xl border-2 border-input px-2 py-1">
               {selectedCountry.dialCode}
             </div>
             <Controller
