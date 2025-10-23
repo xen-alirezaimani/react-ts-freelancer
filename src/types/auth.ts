@@ -1,11 +1,15 @@
+import type * as v from "valibot";
+
+import type createPhoneSchema from "../schemas/createPhoneSchema";
+
 export interface GetOtpRequest {
   phoneNumber: string;
 }
 
 export interface GetOtpResponse {
-  status: "error" | "success";
   message: string;
-  otpId?: string;
+  expiresIn: number;
+  phoneNumber: string;
 }
 
 export interface Country {
@@ -13,3 +17,5 @@ export interface Country {
   code: string;
   dialCode: string;
 }
+
+export type FormData = v.InferOutput<ReturnType<typeof createPhoneSchema>>;

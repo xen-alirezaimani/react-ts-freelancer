@@ -1,35 +1,25 @@
-import type * as v from "valibot";
+import type { Control, FieldErrors, UseFormSetValue } from "react-hook-form";
 
-import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import type { Country } from "../../types/auth";
+import type { Country, FormData } from "../../types/auth";
 
 import PhoneNumberInput from "../../components/authentication/PhoneNumberInput";
 import SelectCountry from "../../components/authentication/SelectCountry";
 import { staticData } from "../../constants/index";
-import createPhoneSchema from "../../schemas/createPhoneSchema";
 
-const SendOTP: React.FC = () => {
+interface PropsType {
+  onSubmit: (e?: React.BaseSyntheticEvent) => void;
+  control: Control<FormData>;
+  setValue: UseFormSetValue<FormData>;
+  errors: FieldErrors<FormData>;
+}
+
+const SendOTP = ({ onSubmit, control, setValue, errors }: PropsType) => {
   const [selectedCountry, setSelectedCountry] = useState<Country>(staticData.countries[0]);
   const { t } = useTranslation();
-
-  type FormData = v.InferOutput<ReturnType<typeof createPhoneSchema>>;
-  const phoneSchema = createPhoneSchema(t);
-
-  const {
-    control,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: valibotResolver(phoneSchema),
-    defaultValues: {
-      phoneNumber: "",
-    },
-  });
 
   const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const country = staticData.countries.find(c => c.code === e.target.value) || staticData.countries[0];
@@ -37,11 +27,11 @@ const SendOTP: React.FC = () => {
     setValue("phoneNumber", "");
   };
 
-  const onSubmit = (data: FormData) => {
-    const countryCode = selectedCountry.dialCode.replace("+", "");
-    const fullPhoneNumber = `${countryCode}${data.phoneNumber}`;
-    console.log("فرم ارسال شد:", fullPhoneNumber);
-  };
+  // const onSubmit = (data: FormData) => {
+  //   const countryCode = selectedCountry.dialCode.replace("+", "");
+  //   const fullPhoneNumber = `${countryCode}${data.phoneNumber}`;
+  //   console.log("فرم ارسال شد:", fullPhoneNumber);
+  // };
 
   const loginButtonRef = useRef<HTMLButtonElement>(null);
   const handleFocus = () => {
@@ -53,7 +43,7 @@ const SendOTP: React.FC = () => {
   return (
     <div className="flex size-full flex-col gap-y-5 rounded-2xl border border-border p-5">
       <h2 className="text-2xl">{t("auth.login.login")}</h2>
-      <form className="flex size-full flex-col justify-between gap-y-5" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex size-full flex-col justify-between gap-y-5" onSubmit={onSubmit}>
         <div className="flex flex-1 flex-col justify-around">
           <SelectCountry
             value={selectedCountry.code}
