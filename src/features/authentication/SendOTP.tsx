@@ -73,7 +73,7 @@ const SendOTP = ({ onSubmit, control, setValue, errors }: PropsType) => {
             />
           </div>
 
-          <div className="h-5">{errors.phoneNumber && <p className="text-destructive">{errors.phoneNumber.message}</p>}</div>
+          <div className="h-5">{errors.phoneNumber && <p className="text-destructive">{errors?.phoneNumber?.message}</p>}</div>
         </div>
 
         <button className="p-5" ref={loginButtonRef} type="submit">

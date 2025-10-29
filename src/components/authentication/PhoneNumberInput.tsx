@@ -9,7 +9,7 @@ const PhoneNumberInput = ({ placeholder, value, onChange, onFocus }: PhoneNumber
   return (
     <input
       className="h-10 w-full rounded-l-none rounded-r-2xl border-2 border-input px-3 py-1 text-left outline-none rtl:placeholder:text-right"
-      type="number"
+      type="text"
       value={value}
       onChange={onChange}
       onFocus={onFocus}
