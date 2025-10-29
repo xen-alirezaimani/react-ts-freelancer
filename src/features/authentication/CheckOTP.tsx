@@ -1,5 +1,5 @@
 const CheckOTP = () => {
-  return <div></div>;
+  return <div className="flex size-full flex-col"></div>;
 };
 
 export default CheckOTP;
