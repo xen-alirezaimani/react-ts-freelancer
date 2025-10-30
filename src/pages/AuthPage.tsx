@@ -4,7 +4,7 @@ import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 import type { FormData, GetOtpRequest, GetOtpResponse } from "../types/auth";
@@ -25,6 +25,7 @@ export default function AuthPage() {
     control,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm<FormData>({
     resolver: valibotResolver(phoneSchema),
@@ -32,11 +33,12 @@ export default function AuthPage() {
       phoneNumber: "",
     },
   });
+  const phone = getValues("phoneNumber");
 
   const handleSendOtp = async (data: FormData): Promise<void> => {
     try {
       const { message } = await mutateAsync(data);
-      console.log(message);
+      toast.success(message);
       setStep(2);
     } catch (err: any) {
       console.log(err);
@@ -48,7 +50,7 @@ export default function AuthPage() {
       case 1:
         return <SendOTP setValue={setValue} control={control} errors={errors} onSubmit={handleSubmit(handleSendOtp)} />;
       case 2:
-        return <CheckOTP />;
+        return <CheckOTP phoneNumber={phone} />;
       default:
         return null;
     }

@@ -12,6 +12,38 @@ export interface GetOtpResponse {
   phoneNumber: string;
 }
 
+export interface CheckOtpRequest {
+  phoneNumber: string;
+  otp: string;
+}
+
+interface OtpInfo {
+  code: string;
+  expiresIn: string;
+}
+interface User {
+  otp: OtpInfo;
+  _id: string;
+  biography: string | null;
+  phoneNumber: string;
+  resetLink: string | null;
+  isVerifiedPhoneNumber: boolean;
+  isActive: boolean;
+  status: number;
+  role: "ADMIN" | "FREELANCER" | "OWNER";
+  createdAt: string;
+  updateAt: string;
+  __v: number;
+  email: string;
+  name: string;
+  avatarUrl: string | null;
+}
+
+export interface CheckOtpResponse {
+  message: string;
+  user: User;
+}
+
 export interface Country {
   name: string;
   code: string;

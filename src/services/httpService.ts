@@ -26,34 +26,32 @@ app.interceptors.response.use(
   (res: AxiosResponse) => res,
   async (err: AxiosError): Promise<AxiosResponse> => {
     const orginalConfig = err.config as AxiosRequestConfig;
-    if (!err.response) {
-      return Promise.reject(err);
-    }
+    if (!err.response) return Promise.reject(err);
 
     if (err.response.status === 401 && !orginalConfig._retry) {
       orginalConfig._retry = true;
 
       if (isRefreshing) {
         return new Promise(resolve => {
-          addSubscribers(() => {
-            resolve(app(orginalConfig));
-          });
+          addSubscribers(() => resolve(app(orginalConfig)));
         });
+      }
+
+      isRefreshing = true;
+
+      try {
+        await axios.get(`${BASE_URL}/user/refresh-token`, { withCredentials: true });
+        onRefreshed();
+        isRefreshing = false;
+        return app(orginalConfig);
+      } catch (refreshErr) {
+        isRefreshing = false;
+        onRefreshed();
+        return Promise.reject(refreshErr);
       }
     }
 
-    isRefreshing = true;
-
-    try {
-      await axios.get(`${BASE_URL}/user/refresh-token`, { withCredentials: true });
-      onRefreshed();
-      isRefreshing = false;
-      return app(orginalConfig);
-    } catch (refreshErr) {
-      isRefreshing = false;
-      onRefreshed();
-      return Promise.reject(refreshErr);
-    }
+    return Promise.reject(err);
   }
 );
 
