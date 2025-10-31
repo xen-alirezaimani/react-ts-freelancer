@@ -26,6 +26,12 @@ Run TypeScript Type check
 npm run type-check
 ```
 
+Run Prettier format check
+```bash
+npm run format
+npm run format-fix
+```
+
 Run Act-Cli with github-Cli
 
 ```bash
