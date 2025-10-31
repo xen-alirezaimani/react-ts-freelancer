@@ -36,8 +36,8 @@ const SendOTP = ({ onSubmit, control, setValue, errors }: PropsType) => {
 
   return (
     <div className="flex size-full flex-col gap-y-5 rounded-2xl border border-border p-5">
-      <h2 className="text-2xl">{t("auth.login.login")}</h2>
-      <p className="text-sm">{t("auth.login.warning")}</p>
+      <h2 className="font-estedad-bold text-2xl">{t("auth.login.login")}</h2>
+      <p className="font-estedad-regular text-sm">{t("auth.login.warning")}</p>
       <form className="flex size-full flex-col justify-between gap-y-5" onSubmit={onSubmit}>
         <div className="flex flex-1 flex-col justify-around">
           <SelectCountry
