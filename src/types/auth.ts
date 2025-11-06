@@ -44,6 +44,12 @@ export interface CheckOtpResponse {
   user: User;
 }
 
+export interface CompleteProfile {
+  name: string;
+  email: string;
+  role: string;
+}
+
 export interface Country {
   name: string;
   code: string;
