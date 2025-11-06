@@ -1,4 +1,15 @@
+import { useForm } from "react-hook-form";
+
 export default function CompleteProfilePage() {
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<>();
+
+  console.log(typeof watch);
+
   return (
     <div className="container flex min-h-screen items-center justify-center overflow-auto">
       <div className="size-80 overflow-auto p-5">
