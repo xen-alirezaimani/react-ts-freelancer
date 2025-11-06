@@ -14,7 +14,7 @@ export default function OTPInput({ length = 6, value, onChange, currentLang }: O
   }, []);
 
   const handleChange = (digit: string, idx: number) => {
-    if (!/^\d?$/.test(digit)) return; // Only one digit allowed
+    if (!/^\d?$/.test(digit)) return;
 
     const newValue = value.substring(0, idx) + digit + value.substring(idx + 1);
     onChange(newValue);
