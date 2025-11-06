@@ -5,7 +5,7 @@ interface PropsType {
   value: string;
 }
 
-const RadioInput = ({ id, label, name, value, watch, register }: PropsType) => {
+const RadioInput = ({ id, label, name, value }: PropsType) => {
   return (
     <div className="flex items-center gap-x-2">
       <input id={id} name={name} type="radio" />

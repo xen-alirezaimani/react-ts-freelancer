@@ -6,7 +6,7 @@ export default function CompleteProfilePage() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<>();
+  } = useForm();
 
   console.log(typeof watch);
 
