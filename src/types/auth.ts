@@ -21,7 +21,7 @@ interface OtpInfo {
   code: string;
   expiresIn: string;
 }
-interface User {
+export interface User {
   otp: OtpInfo;
   _id: string;
   biography: string | null;

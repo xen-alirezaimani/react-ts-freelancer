@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 import type { CheckOtpRequest, CheckOtpResponse } from "../../types/auth";
 
 import OTPInput from "../../components/authentication/OTPInput";
 import { checkOtp } from "../../services/authService";
-import { useTranslation } from "react-i18next";
 
 interface PropsType {
   phoneNumber: string;
@@ -17,36 +17,35 @@ interface FormData {
 }
 
 const CheckOTP = ({ phoneNumber }: PropsType) => {
-  // const [otp, setOtp] = useState<string>("");
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
+  const navigate = useNavigate();
   const { isPending, mutateAsync } = useMutation<CheckOtpResponse, Error, CheckOtpRequest>({ mutationFn: checkOtp });
 
-  const { handleSubmit, setValue, watch } = useForm<FormData>({ defaultValues: { otp: "" } });
+  const { setValue, watch } = useForm<FormData>({ defaultValues: { otp: "" } });
   const otp = watch("otp");
 
-  const handleCheckOtp = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCheckOtp = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    console.log(otp);
+    try {
+      const { message, user } = await mutateAsync({ phoneNumber, otp });
+      toast.success(message);
+      if (!user.isActive) return navigate({ to: "/$lang/complete-profile", params: { lang: currentLang }, replace: true });
+      if (user.status !== 2) return navigate({ to: "/$lang", params: { lang: currentLang }, replace: true });
+      if (user.role === "OWNER") return navigate({ to: "/$lang/owner", params: { lang: currentLang }, replace: true });
+      if (user.role === "FREELANCER") return navigate({ to: "/$lang/freelancer", params: { lang: currentLang }, replace: true });
+      if (user.role === "ADMIN") return navigate({ to: "/$lang/admin", params: { lang: currentLang }, replace: true });
+    } catch (err: any) {
+      toast.error(err.response?.data?.message);
+    }
   };
-
-  // const handleCheckOtp = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-  //   e.preventDefault();
-  //   try {
-  //     const { message, user } = await mutateAsync({ phoneNumber, otp });
-  //     toast.success(message);
-  //     console.log(user);
-  //   } catch (err: any) {
-  //     toast.error(err.response?.data?.message);
-  //   }
-  // };
 
   return (
     <div className="flex size-full flex-col gap-y-5 rounded-2xl border border-border p-5">
       <h2>test</h2>
       <form className="flex flex-col" onSubmit={handleCheckOtp}>
         {/* <input className="bg-amber-200" type="text" value={otp} inputMode="numeric" onChange={e => setOtp(e.target.value)} /> */}
-        <OTPInput value={otp} onChange={val => setValue("otp", val)} currentLang={currentLang} />
+        <OTPInput currentLang={currentLang} value={otp} onChange={val => setValue("otp", val)} />
         <button type="submit">submit</button>
       </form>
     </div>

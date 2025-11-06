@@ -12,12 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
+import { Route as LangCompleteProfileRouteImport } from './routes/$lang/complete-profile'
 import { Route as LangAuthRouteImport } from './routes/$lang/auth'
 import { Route as LangNotFoundRouteImport } from './routes/$lang/$notFound'
 import { Route as LangOwnerRouteRouteImport } from './routes/$lang/owner/route'
+import { Route as LangFreelancerRouteRouteImport } from './routes/$lang/freelancer/route'
+import { Route as LangAdminRouteRouteImport } from './routes/$lang/admin/route'
 import { Route as LangOwnerIndexRouteImport } from './routes/$lang/owner/index'
+import { Route as LangFreelancerIndexRouteImport } from './routes/$lang/freelancer/index'
+import { Route as LangAdminIndexRouteImport } from './routes/$lang/admin/index'
 import { Route as LangOwnerDashboardRouteImport } from './routes/$lang/owner/dashboard'
-import { Route as LangOwnerCompleteProfileRouteImport } from './routes/$lang/owner/complete-profile'
+import { Route as LangFreelancerDashboardRouteImport } from './routes/$lang/freelancer/dashboard'
+import { Route as LangAdminDashboardRouteImport } from './routes/$lang/admin/dashboard'
 import { Route as LangOwnerProjectsIndexRouteImport } from './routes/$lang/owner/projects/index'
 import { Route as LangOwnerProjectsIdRouteImport } from './routes/$lang/owner/projects/$id'
 
@@ -36,6 +42,11 @@ const LangIndexRoute = LangIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LangRoute,
 } as any)
+const LangCompleteProfileRoute = LangCompleteProfileRouteImport.update({
+  id: '/complete-profile',
+  path: '/complete-profile',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangAuthRoute = LangAuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -51,22 +62,46 @@ const LangOwnerRouteRoute = LangOwnerRouteRouteImport.update({
   path: '/owner',
   getParentRoute: () => LangRoute,
 } as any)
+const LangFreelancerRouteRoute = LangFreelancerRouteRouteImport.update({
+  id: '/freelancer',
+  path: '/freelancer',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangAdminRouteRoute = LangAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangOwnerIndexRoute = LangOwnerIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LangOwnerRouteRoute,
+} as any)
+const LangFreelancerIndexRoute = LangFreelancerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangFreelancerRouteRoute,
+} as any)
+const LangAdminIndexRoute = LangAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangAdminRouteRoute,
 } as any)
 const LangOwnerDashboardRoute = LangOwnerDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => LangOwnerRouteRoute,
 } as any)
-const LangOwnerCompleteProfileRoute =
-  LangOwnerCompleteProfileRouteImport.update({
-    id: '/complete-profile',
-    path: '/complete-profile',
-    getParentRoute: () => LangOwnerRouteRoute,
-  } as any)
+const LangFreelancerDashboardRoute = LangFreelancerDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => LangFreelancerRouteRoute,
+} as any)
+const LangAdminDashboardRoute = LangAdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => LangAdminRouteRoute,
+} as any)
 const LangOwnerProjectsIndexRoute = LangOwnerProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -81,12 +116,18 @@ const LangOwnerProjectsIdRoute = LangOwnerProjectsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
+  '/$lang/admin': typeof LangAdminRouteRouteWithChildren
+  '/$lang/freelancer': typeof LangFreelancerRouteRouteWithChildren
   '/$lang/owner': typeof LangOwnerRouteRouteWithChildren
   '/$lang/$notFound': typeof LangNotFoundRoute
   '/$lang/auth': typeof LangAuthRoute
+  '/$lang/complete-profile': typeof LangCompleteProfileRoute
   '/$lang/': typeof LangIndexRoute
-  '/$lang/owner/complete-profile': typeof LangOwnerCompleteProfileRoute
+  '/$lang/admin/dashboard': typeof LangAdminDashboardRoute
+  '/$lang/freelancer/dashboard': typeof LangFreelancerDashboardRoute
   '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
+  '/$lang/admin/': typeof LangAdminIndexRoute
+  '/$lang/freelancer/': typeof LangFreelancerIndexRoute
   '/$lang/owner/': typeof LangOwnerIndexRoute
   '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
   '/$lang/owner/projects': typeof LangOwnerProjectsIndexRoute
@@ -95,9 +136,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/$notFound': typeof LangNotFoundRoute
   '/$lang/auth': typeof LangAuthRoute
+  '/$lang/complete-profile': typeof LangCompleteProfileRoute
   '/$lang': typeof LangIndexRoute
-  '/$lang/owner/complete-profile': typeof LangOwnerCompleteProfileRoute
+  '/$lang/admin/dashboard': typeof LangAdminDashboardRoute
+  '/$lang/freelancer/dashboard': typeof LangFreelancerDashboardRoute
   '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
+  '/$lang/admin': typeof LangAdminIndexRoute
+  '/$lang/freelancer': typeof LangFreelancerIndexRoute
   '/$lang/owner': typeof LangOwnerIndexRoute
   '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
   '/$lang/owner/projects': typeof LangOwnerProjectsIndexRoute
@@ -106,12 +151,18 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
+  '/$lang/admin': typeof LangAdminRouteRouteWithChildren
+  '/$lang/freelancer': typeof LangFreelancerRouteRouteWithChildren
   '/$lang/owner': typeof LangOwnerRouteRouteWithChildren
   '/$lang/$notFound': typeof LangNotFoundRoute
   '/$lang/auth': typeof LangAuthRoute
+  '/$lang/complete-profile': typeof LangCompleteProfileRoute
   '/$lang/': typeof LangIndexRoute
-  '/$lang/owner/complete-profile': typeof LangOwnerCompleteProfileRoute
+  '/$lang/admin/dashboard': typeof LangAdminDashboardRoute
+  '/$lang/freelancer/dashboard': typeof LangFreelancerDashboardRoute
   '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
+  '/$lang/admin/': typeof LangAdminIndexRoute
+  '/$lang/freelancer/': typeof LangFreelancerIndexRoute
   '/$lang/owner/': typeof LangOwnerIndexRoute
   '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
   '/$lang/owner/projects/': typeof LangOwnerProjectsIndexRoute
@@ -121,12 +172,18 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$lang'
+    | '/$lang/admin'
+    | '/$lang/freelancer'
     | '/$lang/owner'
     | '/$lang/$notFound'
     | '/$lang/auth'
+    | '/$lang/complete-profile'
     | '/$lang/'
-    | '/$lang/owner/complete-profile'
+    | '/$lang/admin/dashboard'
+    | '/$lang/freelancer/dashboard'
     | '/$lang/owner/dashboard'
+    | '/$lang/admin/'
+    | '/$lang/freelancer/'
     | '/$lang/owner/'
     | '/$lang/owner/projects/$id'
     | '/$lang/owner/projects'
@@ -135,9 +192,13 @@ export interface FileRouteTypes {
     | '/'
     | '/$lang/$notFound'
     | '/$lang/auth'
+    | '/$lang/complete-profile'
     | '/$lang'
-    | '/$lang/owner/complete-profile'
+    | '/$lang/admin/dashboard'
+    | '/$lang/freelancer/dashboard'
     | '/$lang/owner/dashboard'
+    | '/$lang/admin'
+    | '/$lang/freelancer'
     | '/$lang/owner'
     | '/$lang/owner/projects/$id'
     | '/$lang/owner/projects'
@@ -145,12 +206,18 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$lang'
+    | '/$lang/admin'
+    | '/$lang/freelancer'
     | '/$lang/owner'
     | '/$lang/$notFound'
     | '/$lang/auth'
+    | '/$lang/complete-profile'
     | '/$lang/'
-    | '/$lang/owner/complete-profile'
+    | '/$lang/admin/dashboard'
+    | '/$lang/freelancer/dashboard'
     | '/$lang/owner/dashboard'
+    | '/$lang/admin/'
+    | '/$lang/freelancer/'
     | '/$lang/owner/'
     | '/$lang/owner/projects/$id'
     | '/$lang/owner/projects/'
@@ -184,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangIndexRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/complete-profile': {
+      id: '/$lang/complete-profile'
+      path: '/complete-profile'
+      fullPath: '/$lang/complete-profile'
+      preLoaderRoute: typeof LangCompleteProfileRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/auth': {
       id: '/$lang/auth'
       path: '/auth'
@@ -205,12 +279,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangOwnerRouteRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/freelancer': {
+      id: '/$lang/freelancer'
+      path: '/freelancer'
+      fullPath: '/$lang/freelancer'
+      preLoaderRoute: typeof LangFreelancerRouteRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/admin': {
+      id: '/$lang/admin'
+      path: '/admin'
+      fullPath: '/$lang/admin'
+      preLoaderRoute: typeof LangAdminRouteRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/owner/': {
       id: '/$lang/owner/'
       path: '/'
       fullPath: '/$lang/owner/'
       preLoaderRoute: typeof LangOwnerIndexRouteImport
       parentRoute: typeof LangOwnerRouteRoute
+    }
+    '/$lang/freelancer/': {
+      id: '/$lang/freelancer/'
+      path: '/'
+      fullPath: '/$lang/freelancer/'
+      preLoaderRoute: typeof LangFreelancerIndexRouteImport
+      parentRoute: typeof LangFreelancerRouteRoute
+    }
+    '/$lang/admin/': {
+      id: '/$lang/admin/'
+      path: '/'
+      fullPath: '/$lang/admin/'
+      preLoaderRoute: typeof LangAdminIndexRouteImport
+      parentRoute: typeof LangAdminRouteRoute
     }
     '/$lang/owner/dashboard': {
       id: '/$lang/owner/dashboard'
@@ -219,12 +321,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangOwnerDashboardRouteImport
       parentRoute: typeof LangOwnerRouteRoute
     }
-    '/$lang/owner/complete-profile': {
-      id: '/$lang/owner/complete-profile'
-      path: '/complete-profile'
-      fullPath: '/$lang/owner/complete-profile'
-      preLoaderRoute: typeof LangOwnerCompleteProfileRouteImport
-      parentRoute: typeof LangOwnerRouteRoute
+    '/$lang/freelancer/dashboard': {
+      id: '/$lang/freelancer/dashboard'
+      path: '/dashboard'
+      fullPath: '/$lang/freelancer/dashboard'
+      preLoaderRoute: typeof LangFreelancerDashboardRouteImport
+      parentRoute: typeof LangFreelancerRouteRoute
+    }
+    '/$lang/admin/dashboard': {
+      id: '/$lang/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/$lang/admin/dashboard'
+      preLoaderRoute: typeof LangAdminDashboardRouteImport
+      parentRoute: typeof LangAdminRouteRoute
     }
     '/$lang/owner/projects/': {
       id: '/$lang/owner/projects/'
@@ -243,8 +352,34 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface LangAdminRouteRouteChildren {
+  LangAdminDashboardRoute: typeof LangAdminDashboardRoute
+  LangAdminIndexRoute: typeof LangAdminIndexRoute
+}
+
+const LangAdminRouteRouteChildren: LangAdminRouteRouteChildren = {
+  LangAdminDashboardRoute: LangAdminDashboardRoute,
+  LangAdminIndexRoute: LangAdminIndexRoute,
+}
+
+const LangAdminRouteRouteWithChildren = LangAdminRouteRoute._addFileChildren(
+  LangAdminRouteRouteChildren,
+)
+
+interface LangFreelancerRouteRouteChildren {
+  LangFreelancerDashboardRoute: typeof LangFreelancerDashboardRoute
+  LangFreelancerIndexRoute: typeof LangFreelancerIndexRoute
+}
+
+const LangFreelancerRouteRouteChildren: LangFreelancerRouteRouteChildren = {
+  LangFreelancerDashboardRoute: LangFreelancerDashboardRoute,
+  LangFreelancerIndexRoute: LangFreelancerIndexRoute,
+}
+
+const LangFreelancerRouteRouteWithChildren =
+  LangFreelancerRouteRoute._addFileChildren(LangFreelancerRouteRouteChildren)
+
 interface LangOwnerRouteRouteChildren {
-  LangOwnerCompleteProfileRoute: typeof LangOwnerCompleteProfileRoute
   LangOwnerDashboardRoute: typeof LangOwnerDashboardRoute
   LangOwnerIndexRoute: typeof LangOwnerIndexRoute
   LangOwnerProjectsIdRoute: typeof LangOwnerProjectsIdRoute
@@ -252,7 +387,6 @@ interface LangOwnerRouteRouteChildren {
 }
 
 const LangOwnerRouteRouteChildren: LangOwnerRouteRouteChildren = {
-  LangOwnerCompleteProfileRoute: LangOwnerCompleteProfileRoute,
   LangOwnerDashboardRoute: LangOwnerDashboardRoute,
   LangOwnerIndexRoute: LangOwnerIndexRoute,
   LangOwnerProjectsIdRoute: LangOwnerProjectsIdRoute,
@@ -264,16 +398,22 @@ const LangOwnerRouteRouteWithChildren = LangOwnerRouteRoute._addFileChildren(
 )
 
 interface LangRouteChildren {
+  LangAdminRouteRoute: typeof LangAdminRouteRouteWithChildren
+  LangFreelancerRouteRoute: typeof LangFreelancerRouteRouteWithChildren
   LangOwnerRouteRoute: typeof LangOwnerRouteRouteWithChildren
   LangNotFoundRoute: typeof LangNotFoundRoute
   LangAuthRoute: typeof LangAuthRoute
+  LangCompleteProfileRoute: typeof LangCompleteProfileRoute
   LangIndexRoute: typeof LangIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
+  LangAdminRouteRoute: LangAdminRouteRouteWithChildren,
+  LangFreelancerRouteRoute: LangFreelancerRouteRouteWithChildren,
   LangOwnerRouteRoute: LangOwnerRouteRouteWithChildren,
   LangNotFoundRoute: LangNotFoundRoute,
   LangAuthRoute: LangAuthRoute,
+  LangCompleteProfileRoute: LangCompleteProfileRoute,
   LangIndexRoute: LangIndexRoute,
 }
 
