@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import type { Country, FormData } from "../../types/auth";
+import type { Country, SendOtpFormData } from "../../types/auth";
 
 import PhoneNumberInput from "../../components/authentication/PhoneNumberInput";
 import SelectCountry from "../../components/authentication/SelectCountry";
@@ -12,9 +12,9 @@ import { staticData } from "../../constants/index";
 
 interface PropsType {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
-  control: Control<FormData>;
-  setValue: UseFormSetValue<FormData>;
-  errors: FieldErrors<FormData>;
+  control: Control<SendOtpFormData>;
+  setValue: UseFormSetValue<SendOtpFormData>;
+  errors: FieldErrors<SendOtpFormData>;
 }
 
 const SendOTP = ({ onSubmit, control, setValue, errors }: PropsType) => {

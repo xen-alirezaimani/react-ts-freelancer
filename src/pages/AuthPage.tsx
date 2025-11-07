@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-import type { FormData, GetOtpRequest, GetOtpResponse } from "../types/auth";
+import type { GetOtpRequest, GetOtpResponse, SendOtpFormData } from "../types/auth";
 
 import CheckOTP from "../features/authentication/CheckOTP";
 import SendOTP from "../features/authentication/SendOTP";
@@ -16,9 +16,9 @@ import { getOtp } from "../services/authService";
 
 export default function AuthPage() {
   const [step, setStep] = useState<number>(1);
-  const { isPending, mutateAsync } = useMutation<GetOtpResponse, GetOtpRequest, FormData>({ mutationFn: getOtp });
-  const { t } = useTranslation();
+  const { isPending, mutateAsync } = useMutation<GetOtpResponse, GetOtpRequest, SendOtpFormData>({ mutationFn: getOtp });
 
+  const { t } = useTranslation();
   const phoneSchema = createPhoneSchema(t);
 
   const {
@@ -27,7 +27,7 @@ export default function AuthPage() {
     setValue,
     getValues,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<SendOtpFormData>({
     resolver: valibotResolver(phoneSchema),
     defaultValues: {
       phoneNumber: "",
@@ -35,7 +35,7 @@ export default function AuthPage() {
   });
   const phone = getValues("phoneNumber");
 
-  const handleSendOtp = async (data: FormData): Promise<void> => {
+  const handleSendOtp = async (data: SendOtpFormData): Promise<void> => {
     try {
       const { message } = await mutateAsync(data);
       toast.success(message);
