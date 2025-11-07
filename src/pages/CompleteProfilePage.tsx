@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import type { ProfileFormData } from "../types/auth";
 
 import RadioInput from "../components/RadioInput";
+import TextInput from "../components/TextInput";
 import createCompleteProfileSchema from "../schemas/createCompleteProfileSchema";
 
 export default function CompleteProfilePage() {
@@ -19,17 +20,21 @@ export default function CompleteProfilePage() {
   } = useForm<ProfileFormData>({
     resolver: valibotResolver(profileSchema),
     defaultValues: {
-      name: "",
+      fullName: "",
       email: "",
       role: "FREELANCER",
     },
   });
 
+  const handleCompleteProfile = () => {
+    console.log("test");
+  };
+
   return (
     <div className="container flex min-h-screen items-center justify-center overflow-auto">
       <div className="size-80 overflow-auto p-5">
-        <form className="flex flex-col gap-10">
-          <input className="w-full" type="text" placeholder="name" />
+        <form className="flex flex-col gap-10" onSubmit={handleSubmit(handleCompleteProfile)}>
+          <TextInput name="fullName" type="text" errors={errors} placeholder={t("auth.completeProfile.fields.name.label")} />
           <input id="" name="" type="email" placeholder="email" />
           <RadioInput
             id="owner"
@@ -47,6 +52,7 @@ export default function CompleteProfilePage() {
             value="OWNER"
             watch={watch}
           />
+          <button type="submit">submit</button>
         </form>
       </div>
     </div>

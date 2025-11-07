@@ -5,7 +5,7 @@ const roles = ["OWNER", "FREELANCER"] as const;
 
 const createCompleteProfileSchema = (t: TranslateFunction) => {
   return v.object({
-    name: v.pipe(
+    fullName: v.pipe(
       v.string(),
       v.nonEmpty(t("auth.completeProfile.fields.name.validateMessage.empty")),
       v.regex(/^\D.*$/, t("auth.completeProfile.fields.name.validateMessage.cantStartNumber"))

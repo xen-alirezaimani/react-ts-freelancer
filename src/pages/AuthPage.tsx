@@ -16,7 +16,7 @@ import { getOtp } from "../services/authService";
 
 export default function AuthPage() {
   const [step, setStep] = useState<number>(1);
-  const { isPending, mutateAsync } = useMutation<GetOtpResponse, GetOtpRequest, SendOtpFormData>({ mutationFn: getOtp });
+  const { isPending, mutateAsync } = useMutation<GetOtpResponse, Error, SendOtpFormData>({ mutationFn: getOtp });
 
   const { t } = useTranslation();
   const phoneSchema = createPhoneSchema(t);
