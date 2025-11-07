@@ -22,11 +22,10 @@ const CheckOTP = ({ phoneNumber }: PropsType) => {
   const navigate = useNavigate();
   const { isPending, mutateAsync } = useMutation<CheckOtpResponse, Error, CheckOtpRequest>({ mutationFn: checkOtp });
 
-  const { setValue, watch } = useForm<FormData>({ defaultValues: { otp: "" } });
+  const { setValue, watch, handleSubmit } = useForm<FormData>({ defaultValues: { otp: "" } });
   const otp = watch("otp");
 
-  const handleCheckOtp = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+  const handleCheckOtp = async (): Promise<void> => {
     try {
       const { message, user } = await mutateAsync({ phoneNumber, otp });
       toast.success(message);
@@ -43,7 +42,7 @@ const CheckOTP = ({ phoneNumber }: PropsType) => {
   return (
     <div className="flex size-full flex-col gap-y-5 rounded-2xl border border-border p-5">
       <h2>test</h2>
-      <form className="flex flex-col" onSubmit={handleCheckOtp}>
+      <form className="flex flex-col" onSubmit={handleSubmit(handleCheckOtp)}>
         {/* <input className="bg-amber-200" type="text" value={otp} inputMode="numeric" onChange={e => setOtp(e.target.value)} /> */}
         <OTPInput currentLang={currentLang} value={otp} onChange={val => setValue("otp", val)} />
         <button type="submit">submit</button>
