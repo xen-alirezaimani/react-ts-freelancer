@@ -12,6 +12,29 @@ export const fa = {
         invalid: "شماره موبایل نامعتبر است",
       },
     },
+    completeProfile: {
+      fields: {
+        name: {
+          label: "نام کامل",
+          validateMessage: {
+            empty: "نام نمیتواند خالی باشد",
+            cantStartNumber: "نام نمیتواند با عدد شروع شود",
+          },
+        },
+        email: {
+          label: "ایمیل",
+          validateMessage: {
+            empty: "ایمیل نمیتواند خالی باشد",
+            invalid: "لطفا ایمیل معتبر وارد کنید",
+          },
+        },
+      },
+      roles: {
+        owner: "کارفرما",
+        freelancer: "فریلنسر",
+        admin: "ادمین",
+      },
+    },
   },
   countries: {
     countryNames: {

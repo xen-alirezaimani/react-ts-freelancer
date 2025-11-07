@@ -1,5 +1,6 @@
 import type * as v from "valibot";
 
+import type createCompleteProfileSchema from "../schemas/createCompleteProfileSchema";
 import type createPhoneSchema from "../schemas/createPhoneSchema";
 
 export interface GetOtpRequest {
@@ -56,4 +57,5 @@ export interface Country {
   dialCode: string;
 }
 
-export type FormData = v.InferOutput<ReturnType<typeof createPhoneSchema>>;
+export type SendOtpFormData = v.InferOutput<ReturnType<typeof createPhoneSchema>>;
+export type ProfileFormData = v.InferOutput<ReturnType<typeof createCompleteProfileSchema>>;
