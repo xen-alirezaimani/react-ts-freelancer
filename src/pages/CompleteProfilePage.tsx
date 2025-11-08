@@ -24,6 +24,8 @@ export default function CompleteProfilePage() {
       email: "",
       role: "FREELANCER",
     },
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const handleCompleteProfile = () => {
@@ -34,8 +36,20 @@ export default function CompleteProfilePage() {
     <div className="container flex min-h-screen items-center justify-center overflow-auto">
       <div className="size-80 overflow-auto p-5">
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(handleCompleteProfile)}>
-          <TextInput name="fullName" type="text" errors={errors} placeholder={t("auth.completeProfile.fields.name.label")} />
-          <input id="" name="" type="email" placeholder="email" />
+          <TextInput
+            name="fullName"
+            register={register}
+            type="text"
+            errors={errors}
+            placeholder={t("auth.completeProfile.fields.name.label")}
+          />
+          <TextInput
+            name="email"
+            register={register}
+            type="email"
+            errors={errors}
+            placeholder={t("auth.completeProfile.fields.email.label")}
+          />
           <RadioInput
             id="owner"
             label={t("auth.completeProfile.roles.freelancer")}
