@@ -3,6 +3,7 @@ import type { AxiosError } from "axios";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 import type { ApiError, CompleteProfilePayload, CompleteProfileResponse, ProfileFormData } from "../types/auth";
@@ -16,7 +17,12 @@ export default function CompleteProfilePage() {
   const { t } = useTranslation();
   const profileSchema = createCompleteProfileSchema(t);
 
-  const { isPending, mutateAsync } = useMutation<CompleteProfileResponse, AxiosError<ApiError>, CompleteProfilePayload>({
+  const { isPending, mutateAsync } = useMutation<
+    CompleteProfileResponse,
+    AxiosError<ApiError>,
+    CompleteProfilePayload,
+    ProfileFormData
+  >({
     mutationFn: completeProfile,
   });
 
@@ -28,7 +34,7 @@ export default function CompleteProfilePage() {
   } = useForm<ProfileFormData>({
     resolver: valibotResolver(profileSchema),
     defaultValues: {
-      fullName: "",
+      name: "",
       email: "",
       role: "FREELANCER",
     },
@@ -36,8 +42,15 @@ export default function CompleteProfilePage() {
     reValidateMode: "onChange",
   });
 
-  const handleCompleteProfile = () => {
-    console.log("test");
+  const handleCompleteProfile = async (data: ProfileFormData): Promise<void> => {
+    try {
+      const { user, message } = await mutateAsync(data);
+      console.log(message, user);
+    } catch (err) {
+      const error = err as AxiosError<ApiError>;
+      const errorMessage = error.response?.data?.message || "خطایی رخ داد";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -45,7 +58,7 @@ export default function CompleteProfilePage() {
       <div className="size-80 overflow-auto p-5">
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(handleCompleteProfile)}>
           <TextInput
-            name="fullName"
+            name="name"
             register={register}
             type="text"
             errors={errors}
