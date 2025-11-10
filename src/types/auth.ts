@@ -3,7 +3,12 @@ import type * as v from "valibot";
 import type createCompleteProfileSchema from "../schemas/createCompleteProfileSchema";
 import type createPhoneSchema from "../schemas/createPhoneSchema";
 
-export interface GetOtpRequest {
+export interface ApiError {
+  statusCode: number;
+  message: string;
+}
+
+export interface GetOtpPayload {
   phoneNumber: string;
 }
 
@@ -13,7 +18,7 @@ export interface GetOtpResponse {
   phoneNumber: string;
 }
 
-export interface CheckOtpRequest {
+export interface CheckOtpPaylod {
   phoneNumber: string;
   otp: string;
 }
@@ -45,10 +50,15 @@ export interface CheckOtpResponse {
   user: User;
 }
 
-export interface CompleteProfile {
+export interface CompleteProfilePayload {
   name: string;
   email: string;
   role: string;
+}
+
+export interface CompleteProfileResponse {
+  message: string;
+  user: User;
 }
 
 export interface Country {
