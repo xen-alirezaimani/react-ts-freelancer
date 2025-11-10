@@ -1,16 +1,24 @@
+import type { AxiosError } from "axios";
+
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import type { ProfileFormData } from "../types/auth";
+import type { ApiError, CompleteProfilePayload, CompleteProfileResponse, ProfileFormData } from "../types/auth";
 
 import RadioInput from "../components/RadioInput";
 import TextInput from "../components/TextInput";
 import createCompleteProfileSchema from "../schemas/createCompleteProfileSchema";
+import { completeProfile } from "../services/authService";
 
 export default function CompleteProfilePage() {
   const { t } = useTranslation();
   const profileSchema = createCompleteProfileSchema(t);
+
+  const { isPending, mutateAsync } = useMutation<CompleteProfileResponse, AxiosError<ApiError>, CompleteProfilePayload>({
+    mutationFn: completeProfile,
+  });
 
   const {
     register,
@@ -50,22 +58,25 @@ export default function CompleteProfilePage() {
             errors={errors}
             placeholder={t("auth.completeProfile.fields.email.label")}
           />
-          <RadioInput
-            id="owner"
-            label={t("auth.completeProfile.roles.freelancer")}
-            name="role"
-            register={register}
-            value="FREELANCER"
-            watch={watch}
-          />
-          <RadioInput
-            id="owner"
-            label={t("auth.completeProfile.roles.owner")}
-            name="role"
-            register={register}
-            value="OWNER"
-            watch={watch}
-          />
+          <div className="flex flex-row gap-x-4">
+            <RadioInput
+              id="owner"
+              label={t("auth.completeProfile.roles.freelancer")}
+              name="role"
+              register={register}
+              value="FREELANCER"
+              watch={watch}
+            />
+            <RadioInput
+              id="owner"
+              label={t("auth.completeProfile.roles.owner")}
+              name="role"
+              register={register}
+              value="OWNER"
+              watch={watch}
+            />
+          </div>
+
           <button type="submit">submit</button>
         </form>
       </div>

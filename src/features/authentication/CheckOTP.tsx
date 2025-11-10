@@ -1,10 +1,12 @@
+import type { AxiosError } from "axios";
+
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-import type { CheckOtpRequest, CheckOtpResponse } from "../../types/auth";
+import type { ApiError, CheckOtpPaylod, CheckOtpResponse } from "../../types/auth";
 
 import OTPInput from "../../components/authentication/OTPInput";
 import { checkOtp } from "../../services/authService";
@@ -20,7 +22,7 @@ const CheckOTP = ({ phoneNumber }: PropsType) => {
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
   const navigate = useNavigate();
-  const { isPending, mutateAsync } = useMutation<CheckOtpResponse, Error, CheckOtpRequest>({ mutationFn: checkOtp });
+  const { isPending, mutateAsync } = useMutation<CheckOtpResponse, Error, CheckOtpPaylod>({ mutationFn: checkOtp });
 
   const { setValue, watch, handleSubmit } = useForm<FormData>({ defaultValues: { otp: "" } });
   const otp = watch("otp");
@@ -34,8 +36,10 @@ const CheckOTP = ({ phoneNumber }: PropsType) => {
       if (user.role === "OWNER") return navigate({ to: "/$lang/owner", params: { lang: currentLang }, replace: true });
       if (user.role === "FREELANCER") return navigate({ to: "/$lang/freelancer", params: { lang: currentLang }, replace: true });
       if (user.role === "ADMIN") return navigate({ to: "/$lang/admin", params: { lang: currentLang }, replace: true });
-    } catch (err: any) {
-      toast.error(err.response?.data?.message);
+    } catch (err) {
+      const error = err as AxiosError<ApiError>;
+      const errorMessage = error.response?.data?.message || "خطایی رخ داد";
+      toast.error(errorMessage);
     }
   };
 

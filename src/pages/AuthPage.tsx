@@ -1,3 +1,4 @@
+import type { AxiosError } from "axios";
 import type { JSX } from "react";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
@@ -7,7 +8,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-import type { GetOtpRequest, GetOtpResponse, SendOtpFormData } from "../types/auth";
+import type { ApiError, GetOtpPayload, GetOtpResponse, SendOtpFormData } from "../types/auth";
 
 import CheckOTP from "../features/authentication/CheckOTP";
 import SendOTP from "../features/authentication/SendOTP";
@@ -16,7 +17,9 @@ import { getOtp } from "../services/authService";
 
 export default function AuthPage() {
   const [step, setStep] = useState<number>(1);
-  const { isPending, mutateAsync } = useMutation<GetOtpResponse, Error, SendOtpFormData>({ mutationFn: getOtp });
+  const { isPending, mutateAsync } = useMutation<GetOtpResponse, AxiosError<ApiError>, GetOtpPayload, SendOtpFormData>({
+    mutationFn: getOtp,
+  });
 
   const { t } = useTranslation();
   const phoneSchema = createPhoneSchema(t);
@@ -40,8 +43,10 @@ export default function AuthPage() {
       const { message } = await mutateAsync(data);
       toast.success(message);
       setStep(2);
-    } catch (err: any) {
-      console.log(err);
+    } catch (err) {
+      const error = err as AxiosError<ApiError>;
+      const errorMessage = error.response?.data?.message || "خطایی رخ داد";
+      toast.error(errorMessage);
     }
   };
 
