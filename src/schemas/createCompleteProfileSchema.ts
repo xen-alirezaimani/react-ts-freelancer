@@ -1,7 +1,7 @@
 import * as v from "valibot";
 
 type TranslateFunction = (key: string) => string;
-const roles = ["OWNER", "FREELANCER"] as const;
+const roles = ["OWNER", "FREELANCER", "ADMIN"] as const;
 
 const createCompleteProfileSchema = (t: TranslateFunction) => {
   return v.object({
