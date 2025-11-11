@@ -23,5 +23,5 @@ export function completeProfile(payload: CompleteProfilePayload): Promise<Comple
 }
 
 export function getUserProfile(): Promise<UserProfileResponse> {
-  return app.get("/user/profile").then(({ data }) => data.data);
+  return app.get("/user/profile").then(({ data }) => data.data.user);
 }
