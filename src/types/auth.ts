@@ -61,6 +61,7 @@ export interface CompleteProfileResponse {
   user: User;
 }
 
+export type UserProfileResponse = Omit<User, "otp">;
 export interface Country {
   name: string;
   code: string;
