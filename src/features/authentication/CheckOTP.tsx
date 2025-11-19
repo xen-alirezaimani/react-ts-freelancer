@@ -1,15 +1,8 @@
-import type { AxiosError } from "axios";
-
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-import type { ApiError, CheckOtpPaylod, CheckOtpResponse } from "../../types/auth";
-
 import OTPInput from "../../components/authentication/OTPInput";
-import { checkOtp } from "../../services/authService";
+import { useCheckOtp } from "../../hooks/useCheckOtp";
 
 interface PropsType {
   phoneNumber: string;
@@ -21,26 +14,12 @@ interface FormData {
 const CheckOTP = ({ phoneNumber }: PropsType) => {
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
-  const navigate = useNavigate();
-  const { isPending, mutateAsync } = useMutation<CheckOtpResponse, Error, CheckOtpPaylod>({ mutationFn: checkOtp });
-
   const { setValue, watch, handleSubmit } = useForm<FormData>({ defaultValues: { otp: "" } });
   const otp = watch("otp");
 
+  const { check, isChecking } = useCheckOtp();
   const handleCheckOtp = async (): Promise<void> => {
-    try {
-      const { message, user } = await mutateAsync({ phoneNumber, otp });
-      toast.success(message);
-      if (!user.isActive) return navigate({ to: "/$lang/complete-profile", params: { lang: currentLang }, replace: true });
-      if (user.status !== 2) return navigate({ to: "/$lang", params: { lang: currentLang }, replace: true });
-      if (user.role === "OWNER") return navigate({ to: "/$lang/owner", params: { lang: currentLang }, replace: true });
-      if (user.role === "FREELANCER") return navigate({ to: "/$lang/freelancer", params: { lang: currentLang }, replace: true });
-      if (user.role === "ADMIN") return navigate({ to: "/$lang/admin", params: { lang: currentLang }, replace: true });
-    } catch (err) {
-      const error = err as AxiosError<ApiError>;
-      const errorMessage = error.response?.data?.message || "خطایی رخ داد";
-      toast.error(errorMessage);
-    }
+    await check({ phoneNumber, otp });
   };
 
   return (

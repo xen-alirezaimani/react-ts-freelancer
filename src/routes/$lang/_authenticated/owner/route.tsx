@@ -1,9 +1,9 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-import Footer from "../../../components/Footer";
-import Header from "../../../components/Header";
+import Footer from "../../../../components/Footer";
+import Header from "../../../../components/Header";
 
-export const Route = createFileRoute("/$lang/admin")({
+export const Route = createFileRoute("/$lang/_authenticated/owner")({
   component: RouteComponent,
 });
 

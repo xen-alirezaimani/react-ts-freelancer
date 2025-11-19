@@ -5,7 +5,7 @@ import type {
   CompleteProfileResponse,
   GetOtpPayload,
   GetOtpResponse,
-  UserProfileResponse,
+  UserProfile,
 } from "../types/auth";
 
 import app from "./httpService";
@@ -22,6 +22,10 @@ export function completeProfile(payload: CompleteProfilePayload): Promise<Comple
   return app.post("/user/complete-profile", payload).then(({ data }) => data.data);
 }
 
-export function getUserProfile(): Promise<UserProfileResponse> {
+export function getUserProfile(): Promise<UserProfile> {
   return app.get("/user/profile").then(({ data }) => data.data.user);
+}
+
+export function logoutApi(): Promise<any> {
+  return app.post("/user/logout").then(({ data }) => data.data);
 }
