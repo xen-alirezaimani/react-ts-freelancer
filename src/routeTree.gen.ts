@@ -14,18 +14,19 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
 import { Route as LangCompleteProfileRouteImport } from './routes/$lang/complete-profile'
 import { Route as LangAuthRouteImport } from './routes/$lang/auth'
+import { Route as LangAuthenticatedRouteImport } from './routes/$lang/_authenticated'
 import { Route as LangNotFoundRouteImport } from './routes/$lang/$notFound'
-import { Route as LangOwnerRouteRouteImport } from './routes/$lang/owner/route'
-import { Route as LangFreelancerRouteRouteImport } from './routes/$lang/freelancer/route'
-import { Route as LangAdminRouteRouteImport } from './routes/$lang/admin/route'
-import { Route as LangOwnerIndexRouteImport } from './routes/$lang/owner/index'
-import { Route as LangFreelancerIndexRouteImport } from './routes/$lang/freelancer/index'
-import { Route as LangAdminIndexRouteImport } from './routes/$lang/admin/index'
-import { Route as LangOwnerDashboardRouteImport } from './routes/$lang/owner/dashboard'
-import { Route as LangFreelancerDashboardRouteImport } from './routes/$lang/freelancer/dashboard'
-import { Route as LangAdminDashboardRouteImport } from './routes/$lang/admin/dashboard'
-import { Route as LangOwnerProjectsIndexRouteImport } from './routes/$lang/owner/projects/index'
-import { Route as LangOwnerProjectsIdRouteImport } from './routes/$lang/owner/projects/$id'
+import { Route as LangAuthenticatedOwnerRouteRouteImport } from './routes/$lang/_authenticated/owner/route'
+import { Route as LangAuthenticatedFreelancerRouteRouteImport } from './routes/$lang/_authenticated/freelancer/route'
+import { Route as LangAuthenticatedAdminRouteRouteImport } from './routes/$lang/_authenticated/admin/route'
+import { Route as LangAuthenticatedOwnerIndexRouteImport } from './routes/$lang/_authenticated/owner/index'
+import { Route as LangAuthenticatedFreelancerIndexRouteImport } from './routes/$lang/_authenticated/freelancer/index'
+import { Route as LangAuthenticatedAdminIndexRouteImport } from './routes/$lang/_authenticated/admin/index'
+import { Route as LangAuthenticatedOwnerDashboardRouteImport } from './routes/$lang/_authenticated/owner/dashboard'
+import { Route as LangAuthenticatedFreelancerDashboardRouteImport } from './routes/$lang/_authenticated/freelancer/dashboard'
+import { Route as LangAuthenticatedAdminDashboardRouteImport } from './routes/$lang/_authenticated/admin/dashboard'
+import { Route as LangAuthenticatedOwnerProjectsIndexRouteImport } from './routes/$lang/_authenticated/owner/projects/index'
+import { Route as LangAuthenticatedOwnerProjectsIdRouteImport } from './routes/$lang/_authenticated/owner/projects/$id'
 
 const LangRoute = LangRouteImport.update({
   id: '/$lang',
@@ -52,133 +53,149 @@ const LangAuthRoute = LangAuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => LangRoute,
 } as any)
+const LangAuthenticatedRoute = LangAuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangNotFoundRoute = LangNotFoundRouteImport.update({
   id: '/$notFound',
   path: '/$notFound',
   getParentRoute: () => LangRoute,
 } as any)
-const LangOwnerRouteRoute = LangOwnerRouteRouteImport.update({
-  id: '/owner',
-  path: '/owner',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangFreelancerRouteRoute = LangFreelancerRouteRouteImport.update({
-  id: '/freelancer',
-  path: '/freelancer',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangAdminRouteRoute = LangAdminRouteRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangOwnerIndexRoute = LangOwnerIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LangOwnerRouteRoute,
-} as any)
-const LangFreelancerIndexRoute = LangFreelancerIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LangFreelancerRouteRoute,
-} as any)
-const LangAdminIndexRoute = LangAdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LangAdminRouteRoute,
-} as any)
-const LangOwnerDashboardRoute = LangOwnerDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => LangOwnerRouteRoute,
-} as any)
-const LangFreelancerDashboardRoute = LangFreelancerDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => LangFreelancerRouteRoute,
-} as any)
-const LangAdminDashboardRoute = LangAdminDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => LangAdminRouteRoute,
-} as any)
-const LangOwnerProjectsIndexRoute = LangOwnerProjectsIndexRouteImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => LangOwnerRouteRoute,
-} as any)
-const LangOwnerProjectsIdRoute = LangOwnerProjectsIdRouteImport.update({
-  id: '/projects/$id',
-  path: '/projects/$id',
-  getParentRoute: () => LangOwnerRouteRoute,
-} as any)
+const LangAuthenticatedOwnerRouteRoute =
+  LangAuthenticatedOwnerRouteRouteImport.update({
+    id: '/owner',
+    path: '/owner',
+    getParentRoute: () => LangAuthenticatedRoute,
+  } as any)
+const LangAuthenticatedFreelancerRouteRoute =
+  LangAuthenticatedFreelancerRouteRouteImport.update({
+    id: '/freelancer',
+    path: '/freelancer',
+    getParentRoute: () => LangAuthenticatedRoute,
+  } as any)
+const LangAuthenticatedAdminRouteRoute =
+  LangAuthenticatedAdminRouteRouteImport.update({
+    id: '/admin',
+    path: '/admin',
+    getParentRoute: () => LangAuthenticatedRoute,
+  } as any)
+const LangAuthenticatedOwnerIndexRoute =
+  LangAuthenticatedOwnerIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => LangAuthenticatedOwnerRouteRoute,
+  } as any)
+const LangAuthenticatedFreelancerIndexRoute =
+  LangAuthenticatedFreelancerIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => LangAuthenticatedFreelancerRouteRoute,
+  } as any)
+const LangAuthenticatedAdminIndexRoute =
+  LangAuthenticatedAdminIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => LangAuthenticatedAdminRouteRoute,
+  } as any)
+const LangAuthenticatedOwnerDashboardRoute =
+  LangAuthenticatedOwnerDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => LangAuthenticatedOwnerRouteRoute,
+  } as any)
+const LangAuthenticatedFreelancerDashboardRoute =
+  LangAuthenticatedFreelancerDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => LangAuthenticatedFreelancerRouteRoute,
+  } as any)
+const LangAuthenticatedAdminDashboardRoute =
+  LangAuthenticatedAdminDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => LangAuthenticatedAdminRouteRoute,
+  } as any)
+const LangAuthenticatedOwnerProjectsIndexRoute =
+  LangAuthenticatedOwnerProjectsIndexRouteImport.update({
+    id: '/projects/',
+    path: '/projects/',
+    getParentRoute: () => LangAuthenticatedOwnerRouteRoute,
+  } as any)
+const LangAuthenticatedOwnerProjectsIdRoute =
+  LangAuthenticatedOwnerProjectsIdRouteImport.update({
+    id: '/projects/$id',
+    path: '/projects/$id',
+    getParentRoute: () => LangAuthenticatedOwnerRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$lang': typeof LangRouteWithChildren
-  '/$lang/admin': typeof LangAdminRouteRouteWithChildren
-  '/$lang/freelancer': typeof LangFreelancerRouteRouteWithChildren
-  '/$lang/owner': typeof LangOwnerRouteRouteWithChildren
+  '/$lang': typeof LangAuthenticatedRouteWithChildren
   '/$lang/$notFound': typeof LangNotFoundRoute
   '/$lang/auth': typeof LangAuthRoute
   '/$lang/complete-profile': typeof LangCompleteProfileRoute
   '/$lang/': typeof LangIndexRoute
-  '/$lang/admin/dashboard': typeof LangAdminDashboardRoute
-  '/$lang/freelancer/dashboard': typeof LangFreelancerDashboardRoute
-  '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
-  '/$lang/admin/': typeof LangAdminIndexRoute
-  '/$lang/freelancer/': typeof LangFreelancerIndexRoute
-  '/$lang/owner/': typeof LangOwnerIndexRoute
-  '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
-  '/$lang/owner/projects': typeof LangOwnerProjectsIndexRoute
+  '/$lang/admin': typeof LangAuthenticatedAdminRouteRouteWithChildren
+  '/$lang/freelancer': typeof LangAuthenticatedFreelancerRouteRouteWithChildren
+  '/$lang/owner': typeof LangAuthenticatedOwnerRouteRouteWithChildren
+  '/$lang/admin/dashboard': typeof LangAuthenticatedAdminDashboardRoute
+  '/$lang/freelancer/dashboard': typeof LangAuthenticatedFreelancerDashboardRoute
+  '/$lang/owner/dashboard': typeof LangAuthenticatedOwnerDashboardRoute
+  '/$lang/admin/': typeof LangAuthenticatedAdminIndexRoute
+  '/$lang/freelancer/': typeof LangAuthenticatedFreelancerIndexRoute
+  '/$lang/owner/': typeof LangAuthenticatedOwnerIndexRoute
+  '/$lang/owner/projects/$id': typeof LangAuthenticatedOwnerProjectsIdRoute
+  '/$lang/owner/projects': typeof LangAuthenticatedOwnerProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/$notFound': typeof LangNotFoundRoute
+  '/$lang': typeof LangIndexRoute
   '/$lang/auth': typeof LangAuthRoute
   '/$lang/complete-profile': typeof LangCompleteProfileRoute
-  '/$lang': typeof LangIndexRoute
-  '/$lang/admin/dashboard': typeof LangAdminDashboardRoute
-  '/$lang/freelancer/dashboard': typeof LangFreelancerDashboardRoute
-  '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
-  '/$lang/admin': typeof LangAdminIndexRoute
-  '/$lang/freelancer': typeof LangFreelancerIndexRoute
-  '/$lang/owner': typeof LangOwnerIndexRoute
-  '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
-  '/$lang/owner/projects': typeof LangOwnerProjectsIndexRoute
+  '/$lang/admin/dashboard': typeof LangAuthenticatedAdminDashboardRoute
+  '/$lang/freelancer/dashboard': typeof LangAuthenticatedFreelancerDashboardRoute
+  '/$lang/owner/dashboard': typeof LangAuthenticatedOwnerDashboardRoute
+  '/$lang/admin': typeof LangAuthenticatedAdminIndexRoute
+  '/$lang/freelancer': typeof LangAuthenticatedFreelancerIndexRoute
+  '/$lang/owner': typeof LangAuthenticatedOwnerIndexRoute
+  '/$lang/owner/projects/$id': typeof LangAuthenticatedOwnerProjectsIdRoute
+  '/$lang/owner/projects': typeof LangAuthenticatedOwnerProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
-  '/$lang/admin': typeof LangAdminRouteRouteWithChildren
-  '/$lang/freelancer': typeof LangFreelancerRouteRouteWithChildren
-  '/$lang/owner': typeof LangOwnerRouteRouteWithChildren
   '/$lang/$notFound': typeof LangNotFoundRoute
+  '/$lang/_authenticated': typeof LangAuthenticatedRouteWithChildren
   '/$lang/auth': typeof LangAuthRoute
   '/$lang/complete-profile': typeof LangCompleteProfileRoute
   '/$lang/': typeof LangIndexRoute
-  '/$lang/admin/dashboard': typeof LangAdminDashboardRoute
-  '/$lang/freelancer/dashboard': typeof LangFreelancerDashboardRoute
-  '/$lang/owner/dashboard': typeof LangOwnerDashboardRoute
-  '/$lang/admin/': typeof LangAdminIndexRoute
-  '/$lang/freelancer/': typeof LangFreelancerIndexRoute
-  '/$lang/owner/': typeof LangOwnerIndexRoute
-  '/$lang/owner/projects/$id': typeof LangOwnerProjectsIdRoute
-  '/$lang/owner/projects/': typeof LangOwnerProjectsIndexRoute
+  '/$lang/_authenticated/admin': typeof LangAuthenticatedAdminRouteRouteWithChildren
+  '/$lang/_authenticated/freelancer': typeof LangAuthenticatedFreelancerRouteRouteWithChildren
+  '/$lang/_authenticated/owner': typeof LangAuthenticatedOwnerRouteRouteWithChildren
+  '/$lang/_authenticated/admin/dashboard': typeof LangAuthenticatedAdminDashboardRoute
+  '/$lang/_authenticated/freelancer/dashboard': typeof LangAuthenticatedFreelancerDashboardRoute
+  '/$lang/_authenticated/owner/dashboard': typeof LangAuthenticatedOwnerDashboardRoute
+  '/$lang/_authenticated/admin/': typeof LangAuthenticatedAdminIndexRoute
+  '/$lang/_authenticated/freelancer/': typeof LangAuthenticatedFreelancerIndexRoute
+  '/$lang/_authenticated/owner/': typeof LangAuthenticatedOwnerIndexRoute
+  '/$lang/_authenticated/owner/projects/$id': typeof LangAuthenticatedOwnerProjectsIdRoute
+  '/$lang/_authenticated/owner/projects/': typeof LangAuthenticatedOwnerProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/$lang'
-    | '/$lang/admin'
-    | '/$lang/freelancer'
-    | '/$lang/owner'
     | '/$lang/$notFound'
     | '/$lang/auth'
     | '/$lang/complete-profile'
     | '/$lang/'
+    | '/$lang/admin'
+    | '/$lang/freelancer'
+    | '/$lang/owner'
     | '/$lang/admin/dashboard'
     | '/$lang/freelancer/dashboard'
     | '/$lang/owner/dashboard'
@@ -191,9 +208,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$lang/$notFound'
+    | '/$lang'
     | '/$lang/auth'
     | '/$lang/complete-profile'
-    | '/$lang'
     | '/$lang/admin/dashboard'
     | '/$lang/freelancer/dashboard'
     | '/$lang/owner/dashboard'
@@ -206,21 +223,22 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$lang'
-    | '/$lang/admin'
-    | '/$lang/freelancer'
-    | '/$lang/owner'
     | '/$lang/$notFound'
+    | '/$lang/_authenticated'
     | '/$lang/auth'
     | '/$lang/complete-profile'
     | '/$lang/'
-    | '/$lang/admin/dashboard'
-    | '/$lang/freelancer/dashboard'
-    | '/$lang/owner/dashboard'
-    | '/$lang/admin/'
-    | '/$lang/freelancer/'
-    | '/$lang/owner/'
-    | '/$lang/owner/projects/$id'
-    | '/$lang/owner/projects/'
+    | '/$lang/_authenticated/admin'
+    | '/$lang/_authenticated/freelancer'
+    | '/$lang/_authenticated/owner'
+    | '/$lang/_authenticated/admin/dashboard'
+    | '/$lang/_authenticated/freelancer/dashboard'
+    | '/$lang/_authenticated/owner/dashboard'
+    | '/$lang/_authenticated/admin/'
+    | '/$lang/_authenticated/freelancer/'
+    | '/$lang/_authenticated/owner/'
+    | '/$lang/_authenticated/owner/projects/$id'
+    | '/$lang/_authenticated/owner/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -265,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangAuthRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/_authenticated': {
+      id: '/$lang/_authenticated'
+      path: ''
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangAuthenticatedRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/$notFound': {
       id: '/$lang/$notFound'
       path: '/$notFound'
@@ -272,146 +297,171 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangNotFoundRouteImport
       parentRoute: typeof LangRoute
     }
-    '/$lang/owner': {
-      id: '/$lang/owner'
+    '/$lang/_authenticated/owner': {
+      id: '/$lang/_authenticated/owner'
       path: '/owner'
       fullPath: '/$lang/owner'
-      preLoaderRoute: typeof LangOwnerRouteRouteImport
-      parentRoute: typeof LangRoute
+      preLoaderRoute: typeof LangAuthenticatedOwnerRouteRouteImport
+      parentRoute: typeof LangAuthenticatedRoute
     }
-    '/$lang/freelancer': {
-      id: '/$lang/freelancer'
+    '/$lang/_authenticated/freelancer': {
+      id: '/$lang/_authenticated/freelancer'
       path: '/freelancer'
       fullPath: '/$lang/freelancer'
-      preLoaderRoute: typeof LangFreelancerRouteRouteImport
-      parentRoute: typeof LangRoute
+      preLoaderRoute: typeof LangAuthenticatedFreelancerRouteRouteImport
+      parentRoute: typeof LangAuthenticatedRoute
     }
-    '/$lang/admin': {
-      id: '/$lang/admin'
+    '/$lang/_authenticated/admin': {
+      id: '/$lang/_authenticated/admin'
       path: '/admin'
       fullPath: '/$lang/admin'
-      preLoaderRoute: typeof LangAdminRouteRouteImport
-      parentRoute: typeof LangRoute
+      preLoaderRoute: typeof LangAuthenticatedAdminRouteRouteImport
+      parentRoute: typeof LangAuthenticatedRoute
     }
-    '/$lang/owner/': {
-      id: '/$lang/owner/'
+    '/$lang/_authenticated/owner/': {
+      id: '/$lang/_authenticated/owner/'
       path: '/'
       fullPath: '/$lang/owner/'
-      preLoaderRoute: typeof LangOwnerIndexRouteImport
-      parentRoute: typeof LangOwnerRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedOwnerIndexRouteImport
+      parentRoute: typeof LangAuthenticatedOwnerRouteRoute
     }
-    '/$lang/freelancer/': {
-      id: '/$lang/freelancer/'
+    '/$lang/_authenticated/freelancer/': {
+      id: '/$lang/_authenticated/freelancer/'
       path: '/'
       fullPath: '/$lang/freelancer/'
-      preLoaderRoute: typeof LangFreelancerIndexRouteImport
-      parentRoute: typeof LangFreelancerRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedFreelancerIndexRouteImport
+      parentRoute: typeof LangAuthenticatedFreelancerRouteRoute
     }
-    '/$lang/admin/': {
-      id: '/$lang/admin/'
+    '/$lang/_authenticated/admin/': {
+      id: '/$lang/_authenticated/admin/'
       path: '/'
       fullPath: '/$lang/admin/'
-      preLoaderRoute: typeof LangAdminIndexRouteImport
-      parentRoute: typeof LangAdminRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedAdminIndexRouteImport
+      parentRoute: typeof LangAuthenticatedAdminRouteRoute
     }
-    '/$lang/owner/dashboard': {
-      id: '/$lang/owner/dashboard'
+    '/$lang/_authenticated/owner/dashboard': {
+      id: '/$lang/_authenticated/owner/dashboard'
       path: '/dashboard'
       fullPath: '/$lang/owner/dashboard'
-      preLoaderRoute: typeof LangOwnerDashboardRouteImport
-      parentRoute: typeof LangOwnerRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedOwnerDashboardRouteImport
+      parentRoute: typeof LangAuthenticatedOwnerRouteRoute
     }
-    '/$lang/freelancer/dashboard': {
-      id: '/$lang/freelancer/dashboard'
+    '/$lang/_authenticated/freelancer/dashboard': {
+      id: '/$lang/_authenticated/freelancer/dashboard'
       path: '/dashboard'
       fullPath: '/$lang/freelancer/dashboard'
-      preLoaderRoute: typeof LangFreelancerDashboardRouteImport
-      parentRoute: typeof LangFreelancerRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedFreelancerDashboardRouteImport
+      parentRoute: typeof LangAuthenticatedFreelancerRouteRoute
     }
-    '/$lang/admin/dashboard': {
-      id: '/$lang/admin/dashboard'
+    '/$lang/_authenticated/admin/dashboard': {
+      id: '/$lang/_authenticated/admin/dashboard'
       path: '/dashboard'
       fullPath: '/$lang/admin/dashboard'
-      preLoaderRoute: typeof LangAdminDashboardRouteImport
-      parentRoute: typeof LangAdminRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedAdminDashboardRouteImport
+      parentRoute: typeof LangAuthenticatedAdminRouteRoute
     }
-    '/$lang/owner/projects/': {
-      id: '/$lang/owner/projects/'
+    '/$lang/_authenticated/owner/projects/': {
+      id: '/$lang/_authenticated/owner/projects/'
       path: '/projects'
       fullPath: '/$lang/owner/projects'
-      preLoaderRoute: typeof LangOwnerProjectsIndexRouteImport
-      parentRoute: typeof LangOwnerRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedOwnerProjectsIndexRouteImport
+      parentRoute: typeof LangAuthenticatedOwnerRouteRoute
     }
-    '/$lang/owner/projects/$id': {
-      id: '/$lang/owner/projects/$id'
+    '/$lang/_authenticated/owner/projects/$id': {
+      id: '/$lang/_authenticated/owner/projects/$id'
       path: '/projects/$id'
       fullPath: '/$lang/owner/projects/$id'
-      preLoaderRoute: typeof LangOwnerProjectsIdRouteImport
-      parentRoute: typeof LangOwnerRouteRoute
+      preLoaderRoute: typeof LangAuthenticatedOwnerProjectsIdRouteImport
+      parentRoute: typeof LangAuthenticatedOwnerRouteRoute
     }
   }
 }
 
-interface LangAdminRouteRouteChildren {
-  LangAdminDashboardRoute: typeof LangAdminDashboardRoute
-  LangAdminIndexRoute: typeof LangAdminIndexRoute
+interface LangAuthenticatedAdminRouteRouteChildren {
+  LangAuthenticatedAdminDashboardRoute: typeof LangAuthenticatedAdminDashboardRoute
+  LangAuthenticatedAdminIndexRoute: typeof LangAuthenticatedAdminIndexRoute
 }
 
-const LangAdminRouteRouteChildren: LangAdminRouteRouteChildren = {
-  LangAdminDashboardRoute: LangAdminDashboardRoute,
-  LangAdminIndexRoute: LangAdminIndexRoute,
+const LangAuthenticatedAdminRouteRouteChildren: LangAuthenticatedAdminRouteRouteChildren =
+  {
+    LangAuthenticatedAdminDashboardRoute: LangAuthenticatedAdminDashboardRoute,
+    LangAuthenticatedAdminIndexRoute: LangAuthenticatedAdminIndexRoute,
+  }
+
+const LangAuthenticatedAdminRouteRouteWithChildren =
+  LangAuthenticatedAdminRouteRoute._addFileChildren(
+    LangAuthenticatedAdminRouteRouteChildren,
+  )
+
+interface LangAuthenticatedFreelancerRouteRouteChildren {
+  LangAuthenticatedFreelancerDashboardRoute: typeof LangAuthenticatedFreelancerDashboardRoute
+  LangAuthenticatedFreelancerIndexRoute: typeof LangAuthenticatedFreelancerIndexRoute
 }
 
-const LangAdminRouteRouteWithChildren = LangAdminRouteRoute._addFileChildren(
-  LangAdminRouteRouteChildren,
-)
+const LangAuthenticatedFreelancerRouteRouteChildren: LangAuthenticatedFreelancerRouteRouteChildren =
+  {
+    LangAuthenticatedFreelancerDashboardRoute:
+      LangAuthenticatedFreelancerDashboardRoute,
+    LangAuthenticatedFreelancerIndexRoute:
+      LangAuthenticatedFreelancerIndexRoute,
+  }
 
-interface LangFreelancerRouteRouteChildren {
-  LangFreelancerDashboardRoute: typeof LangFreelancerDashboardRoute
-  LangFreelancerIndexRoute: typeof LangFreelancerIndexRoute
+const LangAuthenticatedFreelancerRouteRouteWithChildren =
+  LangAuthenticatedFreelancerRouteRoute._addFileChildren(
+    LangAuthenticatedFreelancerRouteRouteChildren,
+  )
+
+interface LangAuthenticatedOwnerRouteRouteChildren {
+  LangAuthenticatedOwnerDashboardRoute: typeof LangAuthenticatedOwnerDashboardRoute
+  LangAuthenticatedOwnerIndexRoute: typeof LangAuthenticatedOwnerIndexRoute
+  LangAuthenticatedOwnerProjectsIdRoute: typeof LangAuthenticatedOwnerProjectsIdRoute
+  LangAuthenticatedOwnerProjectsIndexRoute: typeof LangAuthenticatedOwnerProjectsIndexRoute
 }
 
-const LangFreelancerRouteRouteChildren: LangFreelancerRouteRouteChildren = {
-  LangFreelancerDashboardRoute: LangFreelancerDashboardRoute,
-  LangFreelancerIndexRoute: LangFreelancerIndexRoute,
+const LangAuthenticatedOwnerRouteRouteChildren: LangAuthenticatedOwnerRouteRouteChildren =
+  {
+    LangAuthenticatedOwnerDashboardRoute: LangAuthenticatedOwnerDashboardRoute,
+    LangAuthenticatedOwnerIndexRoute: LangAuthenticatedOwnerIndexRoute,
+    LangAuthenticatedOwnerProjectsIdRoute:
+      LangAuthenticatedOwnerProjectsIdRoute,
+    LangAuthenticatedOwnerProjectsIndexRoute:
+      LangAuthenticatedOwnerProjectsIndexRoute,
+  }
+
+const LangAuthenticatedOwnerRouteRouteWithChildren =
+  LangAuthenticatedOwnerRouteRoute._addFileChildren(
+    LangAuthenticatedOwnerRouteRouteChildren,
+  )
+
+interface LangAuthenticatedRouteChildren {
+  LangAuthenticatedAdminRouteRoute: typeof LangAuthenticatedAdminRouteRouteWithChildren
+  LangAuthenticatedFreelancerRouteRoute: typeof LangAuthenticatedFreelancerRouteRouteWithChildren
+  LangAuthenticatedOwnerRouteRoute: typeof LangAuthenticatedOwnerRouteRouteWithChildren
 }
 
-const LangFreelancerRouteRouteWithChildren =
-  LangFreelancerRouteRoute._addFileChildren(LangFreelancerRouteRouteChildren)
-
-interface LangOwnerRouteRouteChildren {
-  LangOwnerDashboardRoute: typeof LangOwnerDashboardRoute
-  LangOwnerIndexRoute: typeof LangOwnerIndexRoute
-  LangOwnerProjectsIdRoute: typeof LangOwnerProjectsIdRoute
-  LangOwnerProjectsIndexRoute: typeof LangOwnerProjectsIndexRoute
+const LangAuthenticatedRouteChildren: LangAuthenticatedRouteChildren = {
+  LangAuthenticatedAdminRouteRoute:
+    LangAuthenticatedAdminRouteRouteWithChildren,
+  LangAuthenticatedFreelancerRouteRoute:
+    LangAuthenticatedFreelancerRouteRouteWithChildren,
+  LangAuthenticatedOwnerRouteRoute:
+    LangAuthenticatedOwnerRouteRouteWithChildren,
 }
 
-const LangOwnerRouteRouteChildren: LangOwnerRouteRouteChildren = {
-  LangOwnerDashboardRoute: LangOwnerDashboardRoute,
-  LangOwnerIndexRoute: LangOwnerIndexRoute,
-  LangOwnerProjectsIdRoute: LangOwnerProjectsIdRoute,
-  LangOwnerProjectsIndexRoute: LangOwnerProjectsIndexRoute,
-}
-
-const LangOwnerRouteRouteWithChildren = LangOwnerRouteRoute._addFileChildren(
-  LangOwnerRouteRouteChildren,
-)
+const LangAuthenticatedRouteWithChildren =
+  LangAuthenticatedRoute._addFileChildren(LangAuthenticatedRouteChildren)
 
 interface LangRouteChildren {
-  LangAdminRouteRoute: typeof LangAdminRouteRouteWithChildren
-  LangFreelancerRouteRoute: typeof LangFreelancerRouteRouteWithChildren
-  LangOwnerRouteRoute: typeof LangOwnerRouteRouteWithChildren
   LangNotFoundRoute: typeof LangNotFoundRoute
+  LangAuthenticatedRoute: typeof LangAuthenticatedRouteWithChildren
   LangAuthRoute: typeof LangAuthRoute
   LangCompleteProfileRoute: typeof LangCompleteProfileRoute
   LangIndexRoute: typeof LangIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
-  LangAdminRouteRoute: LangAdminRouteRouteWithChildren,
-  LangFreelancerRouteRoute: LangFreelancerRouteRouteWithChildren,
-  LangOwnerRouteRoute: LangOwnerRouteRouteWithChildren,
   LangNotFoundRoute: LangNotFoundRoute,
+  LangAuthenticatedRoute: LangAuthenticatedRouteWithChildren,
   LangAuthRoute: LangAuthRoute,
   LangCompleteProfileRoute: LangCompleteProfileRoute,
   LangIndexRoute: LangIndexRoute,

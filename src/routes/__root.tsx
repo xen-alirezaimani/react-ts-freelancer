@@ -1,7 +1,19 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { Toaster } from "react-hot-toast";
 
-export const Route = createRootRoute({
+import type { User } from "../types/auth";
+
+interface AuthState {
+  isAuthenticated: boolean;
+  user: User | null;
+  setUser: (u: User | null) => void;
+}
+
+interface MyRouterContext {
+  auth: AuthState;
+}
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: RootComponent,
 });
 
