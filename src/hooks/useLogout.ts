@@ -1,11 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "@tanstack/react-router";
 
 import { useAuth } from "../auth";
 import { logoutApi } from "../services/authService";
 
 export const useLogout = () => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { setUser, setIsAuthenticated } = useAuth();
 
@@ -15,7 +13,10 @@ export const useLogout = () => {
       queryClient.removeQueries();
       setUser(null);
       setIsAuthenticated(false);
-      console.log("logout");
+      console.log("logout success");
+    },
+    onError: () => {
+      console.log("logout error");
     },
   });
 
