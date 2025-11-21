@@ -2,6 +2,7 @@ import type { AxiosError } from "axios";
 
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
@@ -9,14 +10,11 @@ import type { ApiError, CheckOtpPaylod, CheckOtpResponse } from "../types/auth";
 
 import { useAuth } from "../auth";
 import { checkOtp } from "../services/authService";
-import { useEffect } from "react";
 
 export function useCheckOtp() {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
-
-  // const { isPending, mutateAsync } = useMutation<CheckOtpResponse, Error, CheckOtpPaylod>({ mutationFn: checkOtp });
 
   const { user, setUser, setIsAuthenticated, isAuthenticated } = useAuth();
 

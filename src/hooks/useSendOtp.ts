@@ -1,4 +1,4 @@
-import type { AxiosError } from "axios";
+import type { Axios, AxiosError } from "axios";
 
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -8,21 +8,20 @@ import type { ApiError, GetOtpPayload, GetOtpResponse, SendOtpFormData } from ".
 import { getOtp } from "../services/authService";
 
 export function useSendOtp() {
-  const { isPending, mutateAsync } = useMutation<GetOtpResponse, AxiosError<ApiError>, GetOtpPayload, SendOtpFormData>({
+  // const { isPending, mutateAsync } = useMutation<GetOtpResponse, AxiosError<ApiError>, GetOtpPayload, SendOtpFormData>({
+  //   mutationFn: getOtp,
+  // });
+
+  const { mutateAsync, isPending } = useMutation<GetOtpResponse, AxiosError<ApiError>, GetOtpPayload, SendOtpFormData>({
     mutationFn: getOtp,
+    onSuccess: ({ message }) => {
+      toast.success(message);
+    },
+    onError: error => {
+      const axiosError = error as AxiosError<ApiError>;
+      toast.error(axiosError?.response?.data?.message || "خطایی رخ داد");
+    },
   });
 
-  const send = async (data: GetOtpPayload): Promise<void> => {
-    try {
-      const { message } = await mutateAsync(data);
-      toast.success(message);
-    } catch (err) {
-      const error = err as AxiosError<ApiError>;
-      const errorMessage = error?.response?.data?.message || "خطایی رخ داد";
-      toast.error(errorMessage);
-      throw err;
-    }
-  };
-
-  return { send, isSendingOtp: isPending };
+  return { send: mutateAsync, isSendingOtp: isPending };
 }

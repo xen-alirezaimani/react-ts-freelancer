@@ -17,6 +17,7 @@ export default function AuthPage() {
 
   const { t } = useTranslation();
   const phoneSchema = createPhoneSchema(t);
+  const { send, isSendingOtp } = useSendOtp();
 
   const {
     control,
@@ -32,7 +33,6 @@ export default function AuthPage() {
   });
   const phone = getValues("phoneNumber");
 
-  const { send, isSendingOtp } = useSendOtp();
   const handleSendOtp = async (data: SendOtpFormData) => {
     await send(data);
     setStep(2);
