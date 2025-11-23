@@ -43,7 +43,7 @@ export default function AuthPage() {
       case 1:
         return <SendOTP setValue={setValue} control={control} errors={errors} onSubmit={handleSubmit(handleSendOtp)} />;
       case 2:
-        return <CheckOTP phoneNumber={phone} />;
+        return <CheckOTP onBack={() => setStep(step - 1)} onResend={() => send({ phoneNumber: phone })} phoneNumber={phone} />;
       default:
         return null;
     }
